@@ -1,0 +1,41 @@
+{
+  "buildCommand": "hugo --gc --minify",
+  "outputDirectory": "public",
+  "framework": "hugo",
+  "installCommand": "npm install -g hugo-extended",
+  "github": {
+    "silent": true
+  },
+  "env": {
+    "HUGO_VERSION": "0.128.0"
+  },
+  "redirects": [
+    {
+      "source": "/producten",
+      "destination": "/"
+    },
+    {
+      "source": "/gidsen",
+      "destination": "/"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        }
+      ]
+    }
+  ]
+}

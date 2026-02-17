@@ -1,0 +1,26 @@
+{
+  "name": "luchtreiniger-allergie",
+  "version": "1.0.0",
+  "description": "De complete Nederlandse gids voor luchtreinigers bij hooikoorts, astma en allergieën",
+  "scripts": {
+    "dev": "hugo server --buildDrafts --port 1313",
+    "build": "hugo --gc --minify",
+    "clean": "rm -rf public resources",
+    "vercel-build": "hugo --gc --minify --baseURL \"$VERCEL_URL\"",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "luchtreiniger",
+    "allergie",
+    "hooikoorts",
+    "astma",
+    "nederlands",
+    "affiliate"
+  ],
+  "author": "S2",
+  "license": "UNLICENSED",
+  "devDependencies": {},
+  "engines": {
+    "node": ">=18"
+  }
+}
