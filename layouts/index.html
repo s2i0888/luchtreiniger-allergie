@@ -9,7 +9,7 @@
     {{ $showMaintenance = false }}
 {{ end }}
 
-{{ if eq (.Param "preview") "s2secret" }}
+{{ if or (eq (.Param "mode") "preview") (eq (.Param "preview") "s2secret") }}
     {{ $showMaintenance = false }}
 {{ end }}
 
