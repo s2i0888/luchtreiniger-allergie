@@ -1,0 +1,909 @@
+{{/* ============================================
+   PREMIUM COMPARISON TABLE SHORTCODE
+   Zachte borders, Best Value badge, Gradient buttons
+   Usage: {{< comparison >}} ... {{< /comparison >}}
+   ============================================ */}}
+
+{{ $products := .Inner | transform.Unmarshal }}
+
+<div class="comparison-section">
+  <div class="container-narrow">
+    <div class="section-title">
+      <h2>Vergelijkingstabel</h2>
+      <p class="lead">Technische specificaties en prijs-kwaliteit verhouding</p>
+    </div>
+    
+    <div class="comparison-table">
+      <!-- Table Header - STICKY MET BACKDROP BLUR -->
+      <div class="comparison-header sticky-header">
+        <div class="header-cell feature-col">Kenmerk</div>
+        {{ range $index, $product := $products }}
+        <div class="header-cell product-col {{ if eq $product.best_value true }}best-value{{ end }}">
+          <div class="product-header">
+            <h3>{{ $product.name }}</h3>
+            <div class="product-price">€{{ $product.price }}</div>
+            
+            <!-- Score Bol -->
+            {{ if $product.score }}
+            <div class="score-bubble" data-score="{{ $product.score }}">
+              {{ if ge $product.score 90 }}
+              <span class="score-emoji">🟢+</span>
+              <span class="score-text">Uitstekend</span>
+              {{ else if ge $product.score 80 }}
+              <span class="score-emoji">🟢</span>
+              <span class="score-text">Zeer Goed</span>
+              {{ else if ge $product.score 70 }}
+              <span class="score-emoji">🟡</span>
+              <span class="score-text">Goed</span>
+              {{ else if ge $product.score 60 }}
+              <span class="score-emoji">🟠</span>
+              <span class="score-text">Matig</span>
+              {{ else }}
+              <span class="score-emoji">🔴</span>
+              <span class="score-text">Slecht</span>
+              {{ end }}
+            </div>
+            {{ end }}
+            
+            {{ if eq $product.best_value true }}
+            <div class="best-value-badge">
+              <i class="fas fa-crown"></i>
+              <span>Best Value</span>
+            </div>
+            {{ end }}
+          </div>
+        </div>
+        {{ end }}
+      </div>
+      
+      <!-- Table Body -->
+      <div class="comparison-body">
+        {{ range $feature, $values := index $products 0 "features" }}
+        <div class="comparison-row">
+          <div class="feature-cell">
+            <span class="feature-label">{{ $feature }}</span>
+          </div>
+          {{ range $product := $products }}
+          <div class="value-cell {{ if eq $product.best_value true }}best-value{{ end }}">
+            {{ $value := index $product.features $feature }}
+            {{ if eq $value true }}
+            <i class="fas fa-check-circle success-icon"></i>
+            {{ else if eq $value false }}
+            <i class="fas fa-times-circle error-icon"></i>
+            {{ else }}
+            <span class="feature-value">{{ $value }}</span>
+            {{ end }}
+          </div>
+          {{ end }}
+        </div>
+        {{ end }}
+        
+        <!-- CADR Row (special styling) -->
+        <div class="comparison-row cadr-row">
+          <div class="feature-cell">
+            <span class="feature-label">CADR (m³/h)</span>
+            <span class="feature-desc">Luchtverversing capaciteit</span>
+          </div>
+          {{ range $product := $products }}
+          <div class="value-cell cadr-cell {{ if eq $product.best_value true }}best-value{{ end }}">
+            <div class="cadr-value">{{ $product.cadr }}</div>
+            <div class="cadr-bar">
+              <div class="cadr-fill" style="width: {{ mul (div $product.cadr 500) 100 }}%"></div>
+            </div>
+            <div class="cadr-label">
+              {{ if gt $product.cadr 400 }}Uitstekend{{ else if gt $product.cadr 300 }}Goed{{ else }}Voldoende{{ end }}
+            </div>
+          </div>
+          {{ end }}
+        </div>
+        
+        <!-- Noise Level Row -->
+        <div class="comparison-row noise-row">
+          <div class="feature-cell">
+            <span class="feature-label">Geluid (dB)</span>
+            <span class="feature-desc">Nachtmodus / stilste stand</span>
+          </div>
+          {{ range $product := $products }}
+          <div class="value-cell noise-cell {{ if eq $product.best_value true }}best-value{{ end }}">
+            <div class="noise-value">{{ $product.noise }}</div>
+            <div class="noise-indicator">
+              {{ if lt $product.noise 30 }}
+              <i class="fas fa-volume-off"></i> Zeer stil
+              {{ else if lt $product.noise 35 }}
+              <i class="fas fa-volume-down"></i> Stil
+              {{ else }}
+              <i class="fas fa-volume-up"></i> Hoorbaar
+              {{ end }}
+            </div>
+          </div>
+          {{ end }}
+        </div>
+        
+        <!-- Filter Cost Row -->
+        <div class="comparison-row filter-row">
+          <div class="feature-cell">
+            <span class="feature-label">Filter kosten/jaar</span>
+            <span class="feature-desc">Gemiddeld gebruik</span>
+          </div>
+          {{ range $product := $products }}
+          <div class="value-cell filter-cell {{ if eq $product.best_value true }}best-value{{ end }}">
+            <div class="filter-cost">€{{ $product.filter_cost }}</div>
+            <div class="cost-rating">
+              {{ if lt $product.filter_cost 50 }}
+              <span class="rating-low">💰 Laag</span>
+              {{ else if lt $product.filter_cost 80 }}
+              <span class="rating-medium">💸 Gemiddeld</span>
+              {{ else }}
+              <span class="rating-high">📈 Hoog</span>
+              {{ end }}
+            </div>
+          </div>
+          {{ end }}
+        </div>
+        
+        <!-- Overall Score Row -->
+        <div class="comparison-row score-row">
+          <div class="feature-cell">
+            <span class="feature-label">Totaalscore</span>
+            <span class="feature-desc">Gewogen gemiddelde</span>
+            <button class="info-icon" data-tooltip="Score gebaseerd op onze ISO 16890 testruimte - Zie methode">
+              <i class="fas fa-info-circle"></i>
+            </button>
+          </div>
+          {{ range $product := $products }}
+          <div class="value-cell score-cell {{ if eq $product.best_value true }}best-value{{ end }}">
+            <div class="score-display">
+              <div class="score-number">{{ $product.score }}</div>
+              <div class="score-progress">
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: {{ $product.score }}%; background: {{ if ge $product.score 90 }}var(--emerald){{ else if ge $product.score 80 }}#22c55e{{ else if ge $product.score 70 }}#eab308{{ else if ge $product.score 60 }}#f97316{{ else }}#ef4444{{ end }};"></div>
+                </div>
+                <div class="score-breakdown">
+                  <span class="breakdown-item" data-tooltip="CADR: {{ index $product.score_breakdown "cadr" }}">C:{{ index $product.score_breakdown "cadr" }}</span>
+                  <span class="breakdown-item" data-tooltip="Geluid: {{ index $product.score_breakdown "noise" }}">G:{{ index $product.score_breakdown "noise" }}</span>
+                  <span class="breakdown-item" data-tooltip="Energie: {{ index $product.score_breakdown "energy" }}">E:{{ index $product.score_breakdown "energy" }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+      
+      <!-- Table Footer with DEEP-LINK BUTTON STRATEGY -->
+      <div class="comparison-footer">
+        <div class="footer-cell"></div>
+        {{ range $product := $products }}
+        <div class="footer-cell {{ if eq $product.best_value true }}best-value{{ end }}">
+          <!-- Primary Button - Pulse voor Excellent scores -->
+          {{ if and $product.score (ge $product.score 90) }}
+          <a href="{{ $product.affiliate_link }}" class="check-stock-btn pulse-animation" target="_blank" rel="nofollow">
+            <i class="fas fa-box-open"></i>
+            <span>Check Voorraad & Laagste Prijs</span>
+            <span class="retailer">{{ $product.retailer }}</span>
+          </a>
+          {{ else }}
+          <!-- Secondary Button voor andere scores -->
+          <a href="{{ $product.specs_link }}" class="specs-btn" target="_blank" rel="nofollow">
+            <i class="fas fa-search"></i>
+            <span>Bekijk Specificaties</span>
+          </a>
+          {{ end }}
+          
+          <!-- EAN Info -->
+          <div class="ean-info">
+            <i class="fas fa-barcode"></i>
+            <span>EAN: {{ $product.ean }}</span>
+            <button class="copy-ean" data-ean="{{ $product.ean }}" data-tooltip="Kopieer EAN">
+              <i class="fas fa-copy"></i>
+            </button>
+          </div>
+          
+          <div class="product-note">
+            <i class="fas fa-info-circle"></i>
+            {{ $product.note }}
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+    
+    <!-- Legend -->
+    <div class="comparison-legend">
+      <div class="legend-item">
+        <i class="fas fa-check-circle success-icon"></i>
+        <span>Aanwezig / Inbegrepen</span>
+      </div>
+      <div class="legend-item">
+        <i class="fas fa-times-circle error-icon"></i>
+        <span>Niet aanwezig</span>
+      </div>
+      <div class="legend-item">
+        <div class="best-value-badge small">
+          <i class="fas fa-crown"></i>
+          <span>Best Value</span>
+        </div>
+        <span>Beste prijs-kwaliteit verhouding</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{/* ============================================
+   CSS STYLING VOOR PREMIUM COMPARISON TABLE
+   ============================================ */}}
+<style>
+.comparison-section {
+  padding: var(--space-3xl) 0;
+  background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+}
+
+.comparison-table {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--gray-200);
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+  margin-bottom: var(--space-xl);
+}
+
+/* Header Styling - STICKY MET BACKDROP BLUR */
+.comparison-header {
+  display: grid;
+  grid-template-columns: 1fr repeat({{ len $products }}, 1fr);
+  background: linear-gradient(135deg, var(--midnight) 0%, var(--midnight-dark) 100%);
+  color: var(--white);
+  padding: var(--space-lg);
+  gap: 1px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background: rgba(15, 23, 42, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-cell {
+  padding: var(--space-md);
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.header-cell.feature-col {
+  opacity: 0.9;
+}
+
+.header-cell.product-col {
+  text-align: center;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header-cell.product-col.best-value {
+  position: relative;
+  overflow: hidden;
+}
+
+.header-cell.product-col.best-value::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--secondary), var(--accent));
+}
+
+.product-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.product-header h3 {
+  font-size: 1.25rem;
+  margin: 0;
+  color: var(--white);
+}
+
+.product-price {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--electric);
+}
+
+/* Score Bubble */
+.score-bubble {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-full);
+  margin: 0.5rem 0;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.score-emoji {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.score-text {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.best-value-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, var(--secondary) 0%, #0da172 100%);
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  box-shadow: var(--shadow);
+}
+
+.best-value-badge.small {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+}
+
+.best-value-badge i {
+  font-size: 0.875rem;
+}
+
+/* Body Styling */
+.comparison-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.comparison-row {
+  display: grid;
+  grid-template-columns: 1fr repeat({{ len $products }}, 1fr);
+  border-bottom: 1px solid var(--gray-200);
+  transition: background-color var(--transition);
+}
+
+.comparison-row:hover {
+  background-color: var(--gray-50);
+}
+
+.comparison-row:last-child {
+  border-bottom: none;
+}
+
+.feature-cell, .value-cell {
+  padding: var(--space-md);
+  display: flex;
+  align-items: center;
+  min-height: 60px;
+}
+
+.feature-cell {
+  background: var(--stone-50);
+  font-weight: 600;
+  color: var(--midnight);
+  border-right: 1px solid var(--stone-200);
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  position: relative;
+}
+
+.feature-label {
+  font-size: 0.9375rem;
+}
+
+.feature-desc {
+  font-size: 0.75rem;
+  color: var(--stone-500);
+  margin-top: 0.25rem;
+  font-weight: 400;
+}
+
+/* Info Icon voor Tooltips */
+.info-icon {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: var(--electric);
+  cursor: help;
+  font-size: 0.875rem;
+  padding: 0.25rem;
+  border-radius: 50%;
+  transition: all var(--transition);
+}
+
+.info-icon:hover {
+  background: var(--electric-light);
+  color: var(--electric-dark);
+}
+
+.value-cell {
+  text-align: center;
+  justify-content: center;
+  border-left: 1px solid var(--gray-200);
+  position: relative;
+}
+
+.value-cell.best-value {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+  border-left: 2px solid var(--emerald);
+}
+
+/* Score Row Styling */
+.score-row .feature-cell {
+  background: linear-gradient(135deg, var(--electric-light) 0%, transparent 100%);
+}
+
+.score-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.score-number {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--midnight);
+}
+
+.score-progress {
+  width: 100%;
+}
+
+.progress-bar {
+  height: 8px;
+  background: var(--stone-200);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 1s ease-out;
+}
+
+.score-breakdown {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+}
+
+.breakdown-item {
+  background: var(--stone-100);
+  color: var(--stone-700);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  cursor: help;
+  position: relative;
+}
+
+.breakdown-item:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--midnight);
+  color: var(--white);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius);
+  font-size: 0.75rem;
+  white-space: nowrap;
+  z-index: 1000;
+  margin-bottom: 0.5rem;
+  box-shadow: var(--shadow-lg);
+}
+
+.success-icon {
+  color: var(--secondary);
+  font-size: 1.25rem;
+}
+
+.error-icon {
+  color: var(--gray-400);
+  font-size: 1.25rem;
+}
+
+.feature-value {
+  font-weight: 500;
+  color: var(--gray-700);
+}
+
+/* Special Rows */
+.cadr-row .feature-cell {
+  background: linear-gradient(135deg, var(--primary-light) 0%, transparent 100%);
+}
+
+.cadr-cell {
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cadr-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.cadr-bar {
+  width: 100%;
+  height: 8px;
+  background: var(--gray-200);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.cadr-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+  border-radius: var(--radius-full);
+  transition: width 1s ease-out;
+}
+
+.cadr-label {
+  font-size: 0.75rem;
+  color: var(--gray-600);
+  font-weight: 500;
+}
+
+.noise-row .value-cell {
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.noise-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--gray-800);
+}
+
+.noise-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--gray-600);
+}
+
+.filter-row .value-cell {
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filter-cost {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--gray-800);
+}
+
+.cost-rating {
+  font-size: 0.875rem;
+}
+
+.rating-low { color: var(--secondary); }
+.rating-medium { color: var(--warning); }
+.rating-high { color: var(--danger); }
+
+/* Footer Styling */
+.comparison-footer {
+  display: grid;
+  grid-template-columns: 1fr repeat({{ len $products }}, 1fr);
+  padding: var(--space-xl);
+  gap: 1px;
+  background: var(--gray-50);
+  border-top: 1px solid var(--gray-200);
+}
+
+.footer-cell {
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+}
+
+.footer-cell.best-value {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+}
+
+/* DEEP-LINK BUTTON STRATEGY */
+
+/* Primary Button - Check Stock (Pulse voor Excellent scores) */
+.check-stock-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, var(--emerald) 0%, var(--emerald-dark) 100%);
+  color: var(--white);
+  padding: 1rem 2rem;
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all var(--transition);
+  width: 100%;
+  max-width: 220px;
+  box-shadow: var(--shadow-xl);
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.pulse-animation {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+.check-stock-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.check-stock-btn:hover::before {
+  left: 100%;
+}
+
+.check-stock-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-2xl);
+}
+
+.check-stock-btn:active {
+  transform: translateY(-1px);
+}
+
+.check-stock-btn .retailer {
+  font-size: 0.875rem;
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+/* Secondary Button - Bekijk Specificaties */
+.specs-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--white);
+  color: var(--midnight);
+  padding: 1rem 2rem;
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  transition: all var(--transition);
+  width: 100%;
+  max-width: 200px;
+  box-shadow: var(--shadow);
+  border: 2px solid var(--stone-300);
+  cursor: pointer;
+}
+
+.specs-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--electric);
+  color: var(--electric);
+}
+
+.specs-btn:active {
+  transform: translateY(0);
+}
+
+.specs-btn i {
+  color: var(--stone-600);
+}
+
+.specs-btn:hover i {
+  color: var(--electric);
+}
+
+/* EAN Info */
+.ean-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--stone-600);
+  margin: 0.5rem 0;
+  background: var(--stone-100);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius);
+  justify-content: center;
+}
+
+.ean-info i {
+  color: var(--stone-500);
+}
+
+.copy-ean {
+  background: transparent;
+  border: none;
+  color: var(--stone-500);
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition);
+  font-size: 0.75rem;
+}
+
+.copy-ean:hover {
+  background: var(--stone-200);
+  color: var(--electric);
+}
+
+.copy-ean:active {
+  transform: scale(0.95);
+}
+
+.product-note {
+  font-size: 0.75rem;
+  color: var(--gray-600);
+  text-align: center;
+  line-height: 1.4;
+}
+
+.product-note i {
+  color: var(--primary);
+  margin-right: 0.25rem;
+}
+
+/* Legend */
+.comparison-legend {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-xl);
+  padding: var(--space-lg);
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--gray-200);
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: 0.875rem;
+  color: var(--gray-600);
+}
+
+/* Tooltip System */
+[data-tooltip] {
+  position: relative;
+  cursor: help;
+}
+
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--midnight);
+  color: var(--white);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius);
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition);
+  z-index: 1000;
+  margin-bottom: 0.5rem;
+  box-shadow: var(--shadow-lg);
+  pointer-events: none;
+  max-width: 200px;
+  text-align: center;
+}
+
+[data-tooltip]:hover::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-4px);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .comparison-header,
+  .comparison-row,
+  .comparison-footer {
+    grid-template-columns: 1fr;
+  }
+  
+  .header-cell,
+  .feature-cell,
+  .value-cell,
+  .footer-cell {
+    border: none;
+    border-bottom: 1px solid var(--stone-200);
+  }
+  
+  .header-cell.product-col,
+  .value-cell {
+    border-left: none;
+  }
+  
+  .comparison-table {
+    overflow-x: auto;
+  }
+  
+  .comparison-legend {
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+  
+  .sticky-header {
+    position: static;
+  }
+  
+  .score-bubble {
+    padding: 0.25rem 0.5rem;
+  }
+  
+  .score-emoji {
+    font-size: 1rem;
+  }
+  
+  .score-text {
+    font-size: 0.75rem;
+  }
+  
+  .check-stock-btn,
+  .specs-btn {
+    max-width: 100%;
+    padding: 0.875rem 1rem;
+  }
+}
+</style>

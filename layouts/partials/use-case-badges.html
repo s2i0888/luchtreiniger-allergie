@@ -1,0 +1,95 @@
+{{/* ============================================
+   SPECIFIC USE-CASE BADGES
+   Voor Verified Authority Framework
+   Usage: {{ partial "use-case-badges.html" (dict "product" "blueair-7770i") }}
+   ============================================ */}}
+
+{{ $product := .product }}
+{{ $badges := dict }}
+
+{{ if eq $product "blueair-7770i" }}
+  {{ $badges = dict 
+    "badges" (slice 
+      (dict "icon" "fas fa-dog" "label" "Best for Pet Owners" "color" "emerald")
+      (dict "icon" "fas fa-leaf" "label" "Best for Hay Fever" "color" "electric")
+      (dict "icon" "fas fa-home" "label" "Large Rooms (65m²+)" "color" "amethyst")
+    )
+  }}
+{{ else if eq $product "coway-1512hh" }}
+  {{ $badges = dict 
+    "badges" (slice 
+      (dict "icon" "fas fa-bed" "label" "Best for Bedrooms" "color" "emerald")
+      (dict "icon" "fas fa-allergies" "label" "Allergy Relief" "color" "electric")
+      (dict "icon" "fas fa-bolt" "label" "Energy Efficient" "color" "amethyst")
+    )
+  }}
+{{ else if eq $product "philips-3000i" }}
+  {{ $badges = dict 
+    "badges" (slice 
+      (dict "icon" "fas fa-baby" "label" "Child Safe" "color" "emerald")
+      (dict "icon" "fas fa-city" "label" "Urban Apartments" "color" "electric")
+      (dict "icon" "fas fa-wifi" "label" "Smart Home Ready" "color" "amethyst")
+    )
+  }}
+{{ else if eq $product "xiaomi-4" }}
+  {{ $badges = dict 
+    "badges" (slice 
+      (dict "icon" "fas fa-euro-sign" "label" "Budget Friendly" "color" "emerald")
+      (dict "icon" "fas fa-mobile-alt" "label" "App Controlled" "color" "electric")
+      (dict "icon" "fas fa-compact-disc" "label" "Compact Design" "color" "amethyst")
+    )
+  }}
+{{ end }}
+
+{{ if $badges.badges }}
+<div class="use-case-badges">
+  {{ range $badges.badges }}
+  <div class="use-case-badge badge-{{ .color }}">
+    <i class="{{ .icon }}"></i>
+    <span>{{ .label }}</span>
+  </div>
+  {{ end }}
+</div>
+
+<style>
+.use-case-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.use-case-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.badge-emerald {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+  color: var(--emerald-dark);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.badge-electric {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
+  color: var(--electric-dark);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.badge-amethyst {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%);
+  color: var(--amethyst-dark);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.use-case-badge i {
+  font-size: 0.875rem;
+}
+</style>
+{{ end }}

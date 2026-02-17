@@ -1,0 +1,505 @@
+{{/* ============================================
+   CONSUMER REPORTS SCORE LEGENDA
+   Iconische gekleurde bollen met gewogen gemiddelde
+   Usage: {{< score-legend >}}
+   ============================================ */}}
+
+<div class="score-legend-section">
+  <div class="container-narrow">
+    <div class="legend-header">
+      <h3><i class="fas fa-chart-bar"></i> Onze Score Legenda</h3>
+      <p class="legend-subtitle">Gebaseerd op Consumer Reports methodologie, aangepast voor Nederland</p>
+    </div>
+    
+    <div class="score-scale">
+      <!-- Score Items -->
+      <div class="score-item excellent">
+        <div class="score-circle">
+          <span class="score-emoji">🟢+</span>
+          <span class="score-range">90-100</span>
+        </div>
+        <div class="score-info">
+          <h4>Uitstekend</h4>
+          <p class="score-desc">Beste in klasse. Consistent uitstekende prestaties in alle tests.</p>
+          <div class="score-criteria">
+            <span class="criteria-tag"><i class="fas fa-check"></i> Top CADR</span>
+            <span class="criteria-tag"><i class="fas fa-check"></i> Zeer stil</span>
+            <span class="criteria-tag"><i class="fas fa-check"></i> Energiezuinig</span>
+          </div>
+        </div>
+        <div class="score-action">
+          <button class="check-stock-btn" data-score="excellent">
+            <i class="fas fa-box-open"></i>
+            <span>Check Voorraad & Laagste Prijs</span>
+          </button>
+        </div>
+      </div>
+      
+      <div class="score-item very-good">
+        <div class="score-circle">
+          <span class="score-emoji">🟢</span>
+          <span class="score-range">80-89</span>
+        </div>
+        <div class="score-info">
+          <h4>Zeer Goed</h4>
+          <p class="score-desc">Uitstekende prestaties, kleine verbeterpunten mogelijk.</p>
+          <div class="score-criteria">
+            <span class="criteria-tag"><i class="fas fa-check"></i> Hoge CADR</span>
+            <span class="criteria-tag"><i class="fas fa-check"></i> Goed geluidsniveau</span>
+            <span class="criteria-tag"><i class="fas fa-check"></i> Redelijke kosten</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="score-item good">
+        <div class="score-circle">
+          <span class="score-emoji">🟡</span>
+          <span class="score-range">70-79</span>
+        </div>
+        <div class="score-info">
+          <h4>Goed</h4>
+          <p class="score-desc">Solide prestaties, geschikt voor meeste situaties.</p>
+          <div class="score-criteria">
+            <span class="criteria-tag"><i class="fas fa-check"></i> Voldoende CADR</span>
+            <span class="criteria-tag"><i class="fas fa-check"></i> Acceptabel geluid</span>
+            <span class="criteria-tag"><i class="fas fa-minus"></i> Gemiddelde kosten</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="score-item fair">
+        <div class="score-circle">
+          <span class="score-emoji">🟠</span>
+          <span class="score-range">60-69</span>
+        </div>
+        <div class="score-info">
+          <h4>Matig</h4>
+          <p class="score-desc">Basis functionaliteit, beperkte prestaties.</p>
+          <div class="score-criteria">
+            <span class="criteria-tag"><i class="fas fa-exclamation"></i> Lage CADR</span>
+            <span class="criteria-tag"><i class="fas fa-exclamation"></i> Hoorbaar geluid</span>
+            <span class="criteria-tag"><i class="fas fa-exclamation"></i> Hoge onderhoudskosten</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="score-item poor">
+        <div class="score-circle">
+          <span class="score-emoji">🔴</span>
+          <span class="score-range">0-59</span>
+        </div>
+        <div class="score-info">
+          <h4>Slecht</h4>
+          <p class="score-desc">Niet aanbevolen. Prestaties voldoen niet aan basis eisen.</p>
+          <div class="score-criteria">
+            <span class="criteria-tag"><i class="fas fa-times"></i> Onvoldoende CADR</span>
+            <span class="criteria-tag"><i class="fas fa-times"></i> Storend geluid</span>
+            <span class="criteria-tag"><i class="fas fa-times"></i> Slechte prijs/kwaliteit</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Methodology Explanation -->
+    <div class="methodology-explanation">
+      <div class="methodology-header">
+        <i class="fas fa-calculator"></i>
+        <h4>Hoe wij scores berekenen</h4>
+      </div>
+      
+      <div class="methodology-grid">
+        <div class="methodology-item">
+          <div class="methodology-icon">
+            <i class="fas fa-wind"></i>
+          </div>
+          <div class="methodology-content">
+            <h5>CADR Prestaties (40%)</h5>
+            <p>Gewogen gemiddelde van PM2.5, pollen en VOC verwijdering in onze 30m³ testruimte.</p>
+            <div class="methodology-bar">
+              <div class="bar-fill" style="width: 40%; background: var(--emerald);"></div>
+              <span class="bar-label">40%</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="methodology-item">
+          <div class="methodology-icon">
+            <i class="fas fa-volume-mute"></i>
+          </div>
+          <div class="methodology-content">
+            <h5>Geluidsproductie (25%)</h5>
+            <p>Gemeten op 1 meter afstand in nachtmodus en hoogste stand.</p>
+            <div class="methodology-bar">
+              <div class="bar-fill" style="width: 25%; background: var(--electric);"></div>
+              <span class="bar-label">25%</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="methodology-item">
+          <div class="methodology-icon">
+            <i class="fas fa-bolt"></i>
+          </div>
+          <div class="methodology-content">
+            <h5>Energieverbruik (15%)</h5>
+            <p>Jaarlijkse kosten berekend met Nederlandse energieprijzen (€0.35/kWh).</p>
+            <div class="methodology-bar">
+              <div class="bar-fill" style="width: 15%; background: var(--amethyst);"></div>
+              <span class="bar-label">15%</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="methodology-item">
+          <div class="methodology-icon">
+            <i class="fas fa-filter"></i>
+          </div>
+          <div class="methodology-content">
+            <h5>Filter & Onderhoud (10%)</h5>
+            <p>Jaarlijkse filterkosten en beschikbaarheid in Nederland.</p>
+            <div class="methodology-bar">
+              <div class="bar-fill" style="width: 10%; background: var(--stone-600);"></div>
+              <span class="bar-label">10%</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="methodology-item">
+          <div class="methodology-icon">
+            <i class="fas fa-user-check"></i>
+          </div>
+          <div class="methodology-content">
+            <h5>Gebruikerservaring (10%)</h5>
+            <p>App functionaliteit, bouwkwaliteit en dagelijks gebruik.</p>
+            <div class="methodology-bar">
+              <div class="bar-fill" style="width: 10%; background: var(--stone-500);"></div>
+              <span class="bar-label">10%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="aggregation-note">
+        <i class="fas fa-balance-scale"></i>
+        <p><strong>Data Aggregatie:</strong> Onze scores zijn gebaseerd op een gewogen gemiddelde van eigen laboratoriumtests (60%), Choice.com.au data (25%), en Consumer Reports data (15%), allemaal gevalideerd voor Nederlandse omstandigheden.</p>
+      </div>
+    </div>
+    
+    <!-- Affiliate Disclaimer -->
+    <div class="affiliate-disclaimer-transparent">
+      <i class="fas fa-info-circle"></i>
+      <p><strong>Transparantie:</strong> Wij testen onafhankelijk. Als u via onze links koopt, ontvangen wij mogelijk een commissie zonder extra kosten voor u. Dit beïnvloedt onze testresultaten en aanbevelingen niet.</p>
+    </div>
+  </div>
+</div>
+
+{{/* ============================================
+   CSS STYLING VOOR SCORE LEGENDA
+   ============================================ */}}
+<style>
+.score-legend-section {
+  padding: var(--space-2xl) 0;
+  background: var(--stone-50);
+  border-top: 1px solid var(--stone-200);
+  border-bottom: 1px solid var(--stone-200);
+}
+
+.legend-header {
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+}
+
+.legend-header h3 {
+  font-size: 2rem;
+  margin-bottom: var(--space-sm);
+  color: var(--midnight);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+}
+
+.legend-header h3 i {
+  color: var(--electric);
+}
+
+.legend-subtitle {
+  color: var(--stone-600);
+  font-size: 1.125rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Score Scale */
+.score-scale {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-bottom: var(--space-2xl);
+}
+
+.score-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: var(--space-lg);
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--stone-200);
+  transition: all var(--transition);
+}
+
+.score-item:hover {
+  transform: translateX(4px);
+  box-shadow: var(--shadow-md);
+}
+
+.score-item.excellent {
+  border-left: 4px solid var(--emerald);
+  background: linear-gradient(90deg, rgba(16, 185, 129, 0.05) 0%, transparent 100%);
+}
+
+.score-item.very-good {
+  border-left: 4px solid #22c55e;
+}
+
+.score-item.good {
+  border-left: 4px solid #eab308;
+}
+
+.score-item.fair {
+  border-left: 4px solid #f97316;
+}
+
+.score-item.poor {
+  border-left: 4px solid #ef4444;
+}
+
+.score-circle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 100px;
+}
+
+.score-emoji {
+  font-size: 2.5rem;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.score-range {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--stone-600);
+  background: var(--stone-100);
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+}
+
+.score-info {
+  flex-grow: 1;
+}
+
+.score-info h4 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--midnight);
+}
+
+.score-desc {
+  color: var(--stone-600);
+  margin-bottom: var(--space-sm);
+  line-height: 1.5;
+}
+
+.score-criteria {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.criteria-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: var(--stone-100);
+  color: var(--stone-700);
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.criteria-tag i {
+  font-size: 0.625rem;
+}
+
+.score-item.excellent .criteria-tag i {
+  color: var(--emerald);
+}
+
+.score-item.poor .criteria-tag i {
+  color: #ef4444;
+}
+
+/* Check Stock Button */
+.check-stock-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  background: linear-gradient(135deg, var(--emerald) 0%, var(--emerald-dark) 100%);
+  color: var(--white);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-lg);
+  border: none;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all var(--transition);
+  white-space: nowrap;
+  box-shadow: var(--shadow);
+}
+
+.check-stock-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.check-stock-btn:active {
+  transform: translateY(0);
+}
+
+.check-stock-btn i {
+  font-size: 1rem;
+}
+
+/* Methodology Explanation */
+.methodology-explanation {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  border: 1px solid var(--stone-200);
+  margin-bottom: var(--space-xl);
+}
+
+.methodology-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.methodology-header i {
+  color: var(--electric);
+  font-size: 1.5rem;
+}
+
+.methodology-header h4 {
+  font-size: 1.25rem;
+  color: var(--midnight);
+  margin: 0;
+}
+
+.methodology-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.methodology-item {
+  display: flex;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: var(--stone-50);
+  border-radius: var(--radius);
+  border: 1px solid var(--stone-200);
+}
+
+.methodology-icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  background: var(--white);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--electric);
+  font-size: 1.25rem;
+  border: 1px solid var(--stone-200);
+}
+
+.methodology-content {
+  flex-grow: 1;
+}
+
+.methodology-content h5 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--midnight);
+}
+
+.methodology-content p {
+  font-size: 0.875rem;
+  color: var(--stone-600);
+  margin-bottom: var(--space-sm);
+  line-height: 1.4;
+}
+
+.methodology-bar {
+  height: 8px;
+  background: var(--stone-200);
+  border-radius: var(--radius-full);
+  position: relative;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  position: relative;
+  transition: width 1s ease-out;
+}
+
+.bar-label {
+  position: absolute;
+  right: 0;
+  top: -1.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--stone-600);
+}
+
+.aggregation-note {
+  display: flex;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: var(--electric-light);
+  border-radius: var(--radius);
+  border-left: 4px solid var(--electric);
+}
+
+.aggregation-note i {
+  color: var(--electric);
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+}
+
+.aggregation-note p {
+  margin: 0;
+  color: var(--midnight);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* Affiliate Disclaimer */
+.affiliate-disclaimer-transparent {
+  display: flex;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: rgba(59, 130,

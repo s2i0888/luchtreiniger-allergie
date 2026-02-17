@@ -1,0 +1,46 @@
+name: Price Tracker v1.0
+
+on:
+  schedule:
+    # Run daily at 9:00 AM UTC
+    - cron: '0 9 * * *'
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  track-prices:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests beautifulsoup4 lxml pandas
+        
+    - name: Run price tracker
+      env:
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      run: |
+        python .github/scripts/price_tracker.py
+        
+    - name: Commit price updates
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+        # Check if price data changed
+        if git diff --name-only | grep -q "data/price_history.json"; then
+          git add data/price_history.json
+          git commit -m "📈 Price update: $(date +'%Y-%m-%d %H:%M')"
+          git push
+        else
+          echo "No price changes detected"
+        fi

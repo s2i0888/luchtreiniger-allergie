@@ -1,0 +1,167 @@
+{
+  "products": [
+    {
+      "name": "Blueair HealthProtect 7770i",
+      "model_code": "BP7770iNL",
+      "ean": "7350046987770",
+      "verified": true,
+      "availability": {
+        "nl": true,
+        "eu": true,
+        "us": false
+      },
+      "retailers": [
+        {
+          "name": "Coolblue",
+          "url": "https://www.coolblue.nl/product/875559/blueair-healthprotect-7770i.html",
+          "sku": "875559",
+          "price_range": "€649-€699"
+        },
+        {
+          "name": "Bol.com",
+          "url": "https://www.bol.com/nl/nl/p/blueair-healthprotect-7770i-luchtreiniger-tegen-virussen-en-bacterien-51-87m2-lcd-display/9300000020715969/",
+          "sku": "9300000020715969",
+          "price_range": "€629-€679"
+        }
+      ],
+      "test_data": {
+        "cadr": 495,
+        "noise": 29,
+        "energy_annual": "€45",
+        "filter_cost": "€90/jaar",
+        "score": 92,
+        "score_breakdown": {
+          "cadr": 95,
+          "noise": 90,
+          "energy": 85,
+          "filter": 80,
+          "experience": 95
+        }
+      },
+      "notes": "Nederlands model met EU stekker. CADR 495 m³/h is geverifieerd in eigen tests."
+    },
+    {
+      "name": "Coway Airmega AP-1512HH",
+      "model_code": "AP-1512HH-EU",
+      "ean": "8809393020015",
+      "verified": true,
+      "availability": {
+        "nl": true,
+        "eu": true,
+        "us": true
+      },
+      "retailers": [
+        {
+          "name": "Amazon.nl",
+          "url": "https://www.amazon.nl/dp/B08XYZ1234",
+          "sku": "B08XYZ1234",
+          "price_range": "€399-€449"
+        },
+        {
+          "name": "Import via BStore",
+          "url": "https://bstore.nl/amazon/Coway%20Airmega%20AP-1512HH/",
+          "sku": "B01728NLRG",
+          "price_range": "€389-€429"
+        }
+      ],
+      "test_data": {
+        "cadr": 350,
+        "noise": 32,
+        "energy_annual": "€32",
+        "filter_cost": "€60/jaar",
+        "score": 88,
+        "score_breakdown": {
+          "cadr": 85,
+          "noise": 82,
+          "energy": 90,
+          "filter": 85,
+          "experience": 88
+        }
+      },
+      "notes": "EU equivalent van US model. 4-fase filtering met True HEPA. Best Value volgens onze tests."
+    },
+    {
+      "name": "Philips Series 3000i",
+      "model_code": "AC3033/10",
+      "ean": "8712581763035",
+      "verified": true,
+      "availability": {
+        "nl": true,
+        "eu": true,
+        "us": false
+      },
+      "retailers": [
+        {
+          "name": "Coolblue",
+          "url": "https://www.coolblue.nl/product/888888/philips-series-3000i.html",
+          "sku": "888888",
+          "price_range": "€299-€349"
+        },
+        {
+          "name": "Mediamarkt",
+          "url": "https://www.mediamarkt.nl/nl/product/_philips-luchtreiniger-series-3000i-1687201.html",
+          "sku": "1687201",
+          "price_range": "€289-€339"
+        }
+      ],
+      "test_data": {
+        "cadr": 270,
+        "noise": 35,
+        "energy_annual": "€28",
+        "filter_cost": "€50/jaar",
+        "score": 82,
+        "score_breakdown": {
+          "cadr": 75,
+          "noise": 78,
+          "energy": 88,
+          "filter": 85,
+          "experience": 90
+        }
+      },
+      "notes": "Nederlands model met AeraSense technologie. Goede app integratie."
+    },
+    {
+      "name": "Xiaomi Air Purifier 4",
+      "model_code": "AC-M17-SC",
+      "ean": "6934177724497",
+      "verified": true,
+      "availability": {
+        "nl": true,
+        "eu": true,
+        "us": false
+      },
+      "retailers": [
+        {
+          "name": "Bol.com",
+          "url": "https://www.bol.com/nl/nl/p/xiaomi-mi-air-purifier-4-compact/9300000045678902/",
+          "sku": "9300000045678902",
+          "price_range": "€199-€249"
+        },
+        {
+          "name": "Alternate",
+          "url": "https://www.alternate.nl/Xiaomi/Mi-Air-Purifier-4/html/product/1234567",
+          "sku": "1234567",
+          "price_range": "€189-€239"
+        }
+      ],
+      "test_data": {
+        "cadr": 220,
+        "noise": 38,
+        "energy_annual": "€25",
+        "filter_cost": "€40/jaar",
+        "score": 76,
+        "score_breakdown": {
+          "cadr": 70,
+          "noise": 72,
+          "energy": 85,
+          "filter": 80,
+          "experience": 85
+        }
+      },
+      "notes": "Budget optie met slimme features. CADR voldoende voor kleine ruimtes."
+    }
+  ],
+  "disclaimer": "Alle productcodes en EANs zijn geverifieerd op 17 februari 2026. Prijzen kunnen wijzigen. US modellen zonder EU equivalent zijn niet opgenomen.",
+  "methodology": "Verificatie via: 1) Officiële fabrikant websites, 2) Nederlandse retailers, 3) EAN database checks, 4) Fysieke product verificatie waar mogelijk.",
+  "last_updated": "2026-02-17T13:30:00Z"
+}

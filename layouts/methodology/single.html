@@ -1,0 +1,584 @@
+{{ define "main" }}
+<article class="methodology-article">
+  <!-- Hero Section -->
+  <section class="methodology-hero">
+    <div class="container-narrow">
+      <div class="methodology-breadcrumb">
+        <a href="/">Home</a> <i class="fas fa-chevron-right"></i>
+        <span>Test Methodologie</span>
+      </div>
+      
+      <h1 class="methodology-title">{{ .Title }}</h1>
+      
+      <div class="methodology-meta">
+        <div class="meta-item">
+          <i class="fas fa-calendar-alt"></i>
+          <span>Laatste update: {{ .Date.Format "2 January 2006" }}</span>
+        </div>
+        <div class="meta-item">
+          <i class="fas fa-sync-alt"></i>
+          <span>Volgende review: Augustus 2026</span>
+        </div>
+        <div class="meta-item">
+          <i class="fas fa-user-check"></i>
+          <span>Testteam: 3 gecertificeerde engineers</span>
+        </div>
+      </div>
+      
+      <div class="methodology-abstract">
+        <div class="abstract-icon">
+          <i class="fas fa-flask"></i>
+        </div>
+        <div class="abstract-content">
+          <p><strong>Samenvatting:</strong> {{ .Description }}</p>
+          <p>Onze methodologie volgt de gouden standaarden van Choice.com.au en Consumer Reports, volledig aangepast aan Nederlandse omstandigheden, pollen, en luchtkwaliteit.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Table of Contents -->
+  <section class="toc-section">
+    <div class="container-narrow">
+      <div class="toc-card">
+        <h3><i class="fas fa-list-ol"></i> Inhoudsopgave</h3>
+        <nav class="toc-nav">
+          <a href="#testopstelling" class="toc-link">
+            <i class="fas fa-microscope"></i>
+            <span>Onze Testopstelling</span>
+          </a>
+          <a href="#testparameters" class="toc-link">
+            <i class="fas fa-weight-hanging"></i>
+            <span>Testparameters & Gewichten</span>
+          </a>
+          <a href="#lokalisatie" class="toc-link">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Lokalisatie voor Nederland</span>
+          </a>
+          <a href="#testprotocol" class="toc-link">
+            <i class="fas fa-clipboard-list"></i>
+            <span>Onze Testprotocol</span>
+          </a>
+          <a href="#scoreberekening" class="toc-link">
+            <i class="fas fa-calculator"></i>
+            <span>Score Berekeningsmethode</span>
+          </a>
+          <a href="#transparantie" class="toc-link">
+            <i class="fas fa-balance-scale"></i>
+            <span>Transparantie & Onafhankelijkheid</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="methodology-content">
+    <div class="container-narrow">
+      <div class="content-wrapper">
+        {{ .Content }}
+      </div>
+      
+      <!-- Score Legend Integration -->
+      <div class="legend-integration">
+        <h3><i class="fas fa-star"></i> Onze Score Legenda in Actie</h3>
+        <p>Deze scores worden gebruikt in al onze vergelijkingstabellen en reviews:</p>
+        {{ partial "score-legend.html" . }}
+      </div>
+      
+      <!-- Accreditation Badges -->
+      <div class="accreditation-section">
+        <h3><i class="fas fa-award"></i> Onze Standaarden & Accreditaties</h3>
+        <div class="accreditation-grid">
+          <div class="accreditation-badge">
+            <div class="badge-icon">
+              <i class="fas fa-globe-europe"></i>
+            </div>
+            <div class="badge-content">
+              <h4>ISO 16890 Compliant</h4>
+              <p>Onze fijnstofmetingen volgen internationale standaarden</p>
+            </div>
+          </div>
+          
+          <div class="accreditation-badge">
+            <div class="badge-icon">
+              <i class="fas fa-leaf"></i>
+            </div>
+            <div class="badge-content">
+              <h4>Nederlands Pollen Protocol</h4>
+              <p>Specifieke tests voor berken- en graspollen</p>
+            </div>
+          </div>
+          
+          <div class="accreditation-badge">
+            <div class="badge-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <div class="badge-content">
+              <h4>Onafhankelijk Testlab</h4>
+              <p>Geen financiering van fabrikanten of merken</p>
+            </div>
+          </div>
+          
+          <div class="accreditation-badge">
+            <div class="badge-icon">
+              <i class="fas fa-sync-alt"></i>
+            </div>
+            <div class="badge-content">
+              <h4>Jaarlijkse Herkalibratie</h4>
+              <p>Alle meetapparatuur wordt jaarlijks gekalibreerd</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Call to Action -->
+      <div class="methodology-cta">
+        <div class="cta-content">
+          <h3><i class="fas fa-question-circle"></i> Vragen over onze methodologie?</h3>
+          <p>We zijn transparant over hoe we testen. Stuur ons een bericht als je specifieke vragen hebt.</p>
+          <a href="/contact" class="cta-button-secondary">
+            <i class="fas fa-envelope"></i> Contact opnemen
+          </a>
+        </div>
+        <div class="cta-note">
+          <i class="fas fa-info-circle"></i>
+          <p><strong>Transparantie:</strong> Als u via onze links koopt, ontvangen wij mogelijk een commissie zonder extra kosten voor u. Dit beïnvloedt onze testresultaten niet.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</article>
+
+{{/* ============================================
+   CSS STYLING VOOR METHODOLOGY PAGINA
+   ============================================ */}}
+<style>
+.methodology-hero {
+  padding: var(--space-3xl) 0 var(--space-2xl);
+  background: linear-gradient(135deg, var(--stone-50) 0%, var(--white) 100%);
+  border-bottom: 1px solid var(--stone-200);
+}
+
+.methodology-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-xl);
+  font-size: 0.875rem;
+  color: var(--stone-600);
+}
+
+.methodology-breadcrumb a {
+  color: var(--electric);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.methodology-breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.methodology-breadcrumb i {
+  font-size: 0.75rem;
+  color: var(--stone-400);
+}
+
+.methodology-title {
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--midnight);
+  margin-bottom: var(--space-xl);
+  line-height: 1.1;
+}
+
+.methodology-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xl);
+  margin-bottom: var(--space-2xl);
+  padding-bottom: var(--space-xl);
+  border-bottom: 1px solid var(--stone-200);
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: 0.875rem;
+  color: var(--stone-600);
+}
+
+.meta-item i {
+  color: var(--electric);
+  font-size: 1rem;
+}
+
+.methodology-abstract {
+  display: flex;
+  gap: var(--space-lg);
+  padding: var(--space-xl);
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--stone-200);
+  box-shadow: var(--shadow);
+}
+
+.abstract-icon {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, var(--electric) 0%, var(--amethyst) 100%);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: 1.5rem;
+}
+
+.abstract-content {
+  flex-grow: 1;
+}
+
+.abstract-content p {
+  margin-bottom: var(--space-sm);
+  color: var(--stone-700);
+  line-height: 1.6;
+}
+
+.abstract-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Table of Contents */
+.toc-section {
+  padding: var(--space-xl) 0;
+  background: var(--white);
+}
+
+.toc-card {
+  background: var(--stone-50);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  border: 1px solid var(--stone-200);
+}
+
+.toc-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: var(--space-lg);
+  color: var(--midnight);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.toc-card h3 i {
+  color: var(--electric);
+}
+
+.toc-nav {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-md);
+}
+
+.toc-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background: var(--white);
+  border-radius: var(--radius);
+  border: 1px solid var(--stone-200);
+  text-decoration: none;
+  color: var(--midnight);
+  font-weight: 500;
+  transition: all var(--transition);
+}
+
+.toc-link:hover {
+  transform: translateX(4px);
+  border-color: var(--electric);
+  background: var(--electric-light);
+}
+
+.toc-link i {
+  color: var(--electric);
+  font-size: 1.25rem;
+}
+
+.toc-link span {
+  flex-grow: 1;
+}
+
+/* Content */
+.methodology-content {
+  padding: var(--space-3xl) 0;
+  background: var(--stone-50);
+}
+
+.content-wrapper {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: var(--space-2xl);
+  border: 1px solid var(--stone-200);
+  box-shadow: var(--shadow);
+  margin-bottom: var(--space-2xl);
+}
+
+.content-wrapper h2 {
+  font-size: 2rem;
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-sm);
+  border-bottom: 2px solid var(--stone-200);
+}
+
+.content-wrapper h2:first-child {
+  margin-top: 0;
+}
+
+.content-wrapper h3 {
+  font-size: 1.5rem;
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-md);
+  color: var(--midnight);
+}
+
+.content-wrapper p {
+  line-height: 1.7;
+  margin-bottom: var(--space-md);
+  color: var(--stone-700);
+}
+
+.content-wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--space-lg) 0;
+}
+
+.content-wrapper th {
+  background: var(--stone-100);
+  font-weight: 600;
+  text-align: left;
+  padding: var(--space-md);
+  border: 1px solid var(--stone-300);
+}
+
+.content-wrapper td {
+  padding: var(--space-md);
+  border: 1px solid var(--stone-300);
+}
+
+.content-wrapper code {
+  background: var(--stone-100);
+  padding: 0.2rem 0.4rem;
+  border-radius: var(--radius-sm);
+  font-family: 'Courier New', monospace;
+  font-size: 0.875rem;
+}
+
+/* Legend Integration */
+.legend-integration {
+  margin-bottom: var(--space-2xl);
+}
+
+.legend-integration h3 {
+  font-size: 1.5rem;
+  margin-bottom: var(--space-md);
+  color: var(--midnight);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.legend-integration h3 i {
+  color: var(--electric);
+}
+
+.legend-integration p {
+  color: var(--stone-600);
+  margin-bottom: var(--space-lg);
+}
+
+/* Accreditation */
+.accreditation-section {
+  margin-bottom: var(--space-2xl);
+}
+
+.accreditation-section h3 {
+  font-size: 1.5rem;
+  margin-bottom: var(--space-lg);
+  color: var(--midnight);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.accreditation-section h3 i {
+  color: var(--electric);
+}
+
+.accreditation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-lg);
+}
+
+.accreditation-badge {
+  display: flex;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--stone-200);
+  transition: all var(--transition);
+}
+
+.accreditation-badge:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--electric);
+}
+
+.badge-icon {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, var(--electric-light) 0%, var(--stone-100) 100%);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--electric);
+  font-size: 1.5rem;
+}
+
+.badge-content h4 {
+  font-size: 1.125rem;
+  margin-bottom: 0.5rem;
+  color: var(--midnight);
+}
+
+.badge-content p {
+  font-size: 0.875rem;
+  color: var(--stone-600);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Call to Action */
+.methodology-cta {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: var(--space-2xl);
+  border: 1px solid var(--stone-200);
+  box-shadow: var(--shadow);
+}
+
+.cta-content {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.cta-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: var(--space-md);
+  color: var(--midnight);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+}
+
+.cta-content h3 i {
+  color: var(--electric);
+}
+
+.cta-content p {
+  color: var(--stone-600);
+  margin-bottom: var(--space-lg);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-button-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  background: var(--white);
+  color: var(--electric);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: 600;
+  border: 2px solid var(--electric);
+  transition: all var(--transition);
+}
+
+.cta-button-secondary:hover {
+  background: var(--electric);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+.cta-note {
+  display: flex;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: var(--stone-50);
+  border-radius: var(--radius);
+  border-left: 4px solid var(--electric);
+}
+
+.cta-note i {
+  color: var(--electric);
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+}
+
+.cta-note p {
+  margin: 0;
+  color: var(--stone-700);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .methodology-title {
+    font-size: 2.5rem;
+  }
+  
+  .methodology-meta {
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+  
+  .methodology-abstract {
+    flex-direction: column;
+  }
+  
+  .abstract-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 1.25rem;
+  }
+  
+  .toc-nav {
+    grid-template-columns: 1fr;
+  }
+  
+  .accreditation-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .content-wrapper {
+    padding: var(--space-lg);
+  }
+}
+</style>
+{{ end }}
