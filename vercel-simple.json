@@ -1,0 +1,7 @@
+{
+  "buildCommand": "hugo --gc --minify",
+  "outputDirectory": "public",
+  "framework": "hugo",
+  "devCommand": "hugo server -D",
+  "regions": ["ams1"]
+}
