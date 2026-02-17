@@ -31,10 +31,13 @@
     }
     </script>
     
-    <!-- CSS - Tech Authority Design -->
-    <link rel="stylesheet" href="{{ "css/premium.css" | absURL }}">
-    <link rel="stylesheet" href="{{ "css/products.css" | absURL }}">
-    <link rel="stylesheet" href="{{ "css/calculator-gamified.css" | absURL }}">
+    <!-- CSS - Tech Authority Design - Hugo Pipes for Vercel -->
+    {{ $premium := resources.Get "css/premium.css" | minify | fingerprint }}
+    {{ $products := resources.Get "css/products.css" | minify | fingerprint }}
+    {{ $calculator := resources.Get "css/calculator-gamified.css" | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $premium.Permalink }}" integrity="{{ $premium.Data.Integrity }}">
+    <link rel="stylesheet" href="{{ $products.Permalink }}" integrity="{{ $products.Data.Integrity }}">
+    <link rel="stylesheet" href="{{ $calculator.Permalink }}" integrity="{{ $calculator.Data.Integrity }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Favicon -->
@@ -138,9 +141,11 @@
         </div>
     </footer>
 
-    <!-- JavaScript -->
-    <script src="{{ "js/main.js" | absURL }}"></script>
-    <script src="{{ "js/calculator.js" | absURL }}"></script>
+    <!-- JavaScript - Hugo Pipes for Vercel -->
+    {{ $mainjs := resources.Get "js/main.js" | minify | fingerprint }}
+    {{ $calcjs := resources.Get "js/calculator.js" | minify | fingerprint }}
+    <script src="{{ $mainjs.Permalink }}" integrity="{{ $mainjs.Data.Integrity }}"></script>
+    <script src="{{ $calcjs.Permalink }}" integrity="{{ $calcjs.Data.Integrity }}"></script>
     
     {{ block "scripts" . }}{{ end }}
 </body>

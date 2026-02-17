@@ -448,6 +448,24 @@ a, button, .product-card, .badge, .pyramid-layer, .input-group select, .input-gr
   }
 }
 
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+  }
+}
+
 .product-card, .pyramid-layer, .badge {
   animation: fadeInUp 0.6s ease-out;
 }
@@ -459,3 +477,89 @@ a, button, .product-card, .badge, .pyramid-layer, .input-group select, .input-gr
 .badge:nth-child(2) { animation-delay: 0.1s; }
 .badge:nth-child(3) { animation-delay: 0.2s; }
 .badge:nth-child(4) { animation-delay: 0.3s; }
+
+/* ========== GRADIENT BUTTON ENHANCEMENT ========== */
+.buy-button-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--primary) 0%,
+    var(--primary-dark) 25%,
+    var(--accent) 50%,
+    var(--primary-dark) 75%,
+    var(--primary) 100%
+  );
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.buy-button-gradient::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.buy-button-gradient:hover::after {
+  transform: translateX(100%);
+}
+
+/* ========== BEST VALUE BADGE ANIMATION ========== */
+.best-value-badge {
+  animation: pulse-glow 2s infinite;
+  position: relative;
+}
+
+.best-value-badge::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, var(--secondary), var(--accent), var(--secondary));
+  border-radius: var(--radius-full);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.best-value-badge:hover::before {
+  opacity: 1;
+}
+
+/* ========== SOFT BORDERS ENHANCEMENT ========== */
+.comparison-table {
+  border: 1px solid var(--gray-200);
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.05),
+    0 10px 15px -3px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+}
+
+.comparison-row {
+  border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.comparison-row:hover {
+  background: linear-gradient(90deg, rgba(59, 130, 246, 0.03) 0%, rgba(139, 92, 246, 0.03) 100%);
+  transform: translateX(4px);
+}
+
+.value-cell.best-value {
+  border-left: 2px solid;
+  border-image: linear-gradient(180deg, var(--secondary), var(--accent)) 1;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.03) 0%, rgba(139, 92, 246, 0.03) 100%);
+}

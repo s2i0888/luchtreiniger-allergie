@@ -6,12 +6,28 @@
 
 /* ========== CSS VARIABLES ========== */
 :root {
-  /* Color Palette - Premium Tech */
-  --primary: #0066FF;        /* Vercel blue */
-  --primary-dark: #0052CC;
-  --primary-light: #E6F0FF;
-  --secondary: #10B981;      /* Emerald green */
-  --accent: #8B5CF6;         /* Purple accent */
+  /* Color Palette - Tech Authority */
+  --midnight: #0f172a;       /* Midnight Blue - Headers */
+  --midnight-light: #1e293b;
+  --electric: #3b82f6;       /* Electric Blue - Action buttons */
+  --electric-dark: #1d4ed8;
+  --electric-light: #dbeafe;
+  --emerald: #10b981;        /* Emerald - Success/Value */
+  --emerald-dark: #059669;
+  --amethyst: #8b5cf6;       /* Amethyst - Accent */
+  
+  /* Neutrals - Apple-like maar warmer */
+  --stone-900: #1c1917;
+  --stone-800: #292524;
+  --stone-700: #44403c;
+  --stone-600: #57534e;
+  --stone-500: #78716c;
+  --stone-400: #a8a29e;
+  --stone-300: #d6d3d1;
+  --stone-200: #e7e5e4;
+  --stone-100: #f5f5f4;
+  --stone-50: #fafaf9;
+  --white: #ffffff;
   
   /* Neutrals - Apple-like */
   --black: #000000;
@@ -84,30 +100,45 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ========== TYPOGRAPHY - PREMIUM ========== */
+/* ========== TYPOGRAPHY - TECH AUTHORITY ========== */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-sans);
-  font-weight: 800;
-  line-height: 1.2;
-  letter-spacing: -0.025em;
-  color: var(--gray-900);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--midnight);
 }
 
 h1 {
-  font-size: 3.5rem;
-  font-weight: 900;
+  font-size: 4rem;
+  font-weight: 950;
   letter-spacing: -0.05em;
-  line-height: 1.1;
-}
-
-h2 {
-  font-size: 2.5rem;
+  line-height: 1;
   margin-bottom: var(--space-lg);
 }
 
+h2 {
+  font-size: 3rem;
+  margin-bottom: var(--space-lg);
+  position: relative;
+  display: inline-block;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--electric), var(--amethyst));
+  border-radius: var(--radius-full);
+}
+
 h3 {
-  font-size: 1.875rem;
+  font-size: 2rem;
   margin-bottom: var(--space-md);
+  font-weight: 800;
 }
 
 h4 {
@@ -298,12 +329,15 @@ p {
   color: var(--gray-900);
 }
 
-/* ========== HERO SECTION - APPLE STYLE ========== */
+/* ========== HERO SECTION - TECH AUTHORITY ========== */
 .hero {
   padding: var(--space-3xl) 0;
-  background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+  background: 
+    linear-gradient(135deg, var(--stone-50) 0%, var(--white) 100%),
+    url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23d6d3d1' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
   position: relative;
   overflow: hidden;
+  border-bottom: 1px solid var(--stone-200);
 }
 
 .hero::before {
@@ -311,10 +345,10 @@ p {
   position: absolute;
   top: 0;
   right: 0;
-  width: 50%;
+  width: 40%;
   height: 100%;
-  background: linear-gradient(135deg, var(--primary-light) 0%, transparent 100%);
-  opacity: 0.3;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.03) 0%, transparent 100%);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%, 25% 0);
 }
 
 .hero .container {
@@ -367,10 +401,60 @@ p {
   transform: translateY(0);
 }
 
+/* ========== SOCIAL PROOF BAR ========== */
+.social-proof-bar {
+  background: var(--midnight);
+  color: var(--white);
+  padding: var(--space-md) 0;
+  border-bottom: 1px solid var(--midnight-light);
+}
+
+.proof-items {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .proof-items {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .proof-items {
+    grid-template-columns: 1fr;
+  }
+}
+
+.proof-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--stone-300);
+}
+
+.proof-item i {
+  color: var(--electric);
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.proof-item span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* ========== CALCULATOR - PRONKSTUK ========== */
 .calculator-section {
   padding: var(--space-3xl) 0;
-  background: var(--white);
+  background: var(--stone-50);
+  border-bottom: 1px solid var(--stone-200);
 }
 
 .section-title {

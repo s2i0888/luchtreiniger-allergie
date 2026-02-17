@@ -1,0 +1,323 @@
+/* ============================================
+   GAMIFIED CALCULATOR - Live Resultaten
+   Minder "formulier", meer "experience"
+   ============================================ */
+
+/* ========== CALCULATOR GAMIFICATION ========== */
+.calculator-inputs {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  border: 1px solid var(--stone-200);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.calculator-inputs::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--electric), var(--amethyst), var(--emerald));
+}
+
+.input-group-gamified {
+  margin-bottom: var(--space-xl);
+  padding: var(--space-lg);
+  background: var(--stone-50);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--stone-200);
+  transition: all var(--transition);
+}
+
+.input-group-gamified:hover {
+  border-color: var(--electric);
+  background: var(--electric-light);
+  transform: translateX(4px);
+}
+
+.input-group-gamified label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+  font-weight: 700;
+  color: var(--midnight);
+  font-size: 1.125rem;
+}
+
+.input-group-gamified label i {
+  color: var(--electric);
+  font-size: 1.25rem;
+}
+
+/* ========== GAMIFIED SLIDERS ========== */
+.slider-container {
+  position: relative;
+  margin: var(--space-lg) 0;
+}
+
+.slider-track {
+  width: 100%;
+  height: 12px;
+  background: linear-gradient(90deg, var(--stone-300), var(--stone-300));
+  border-radius: var(--radius-full);
+  position: relative;
+  overflow: hidden;
+}
+
+.slider-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--emerald), var(--electric));
+  border-radius: var(--radius-full);
+  transition: width 0.3s ease;
+}
+
+.slider-thumb {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 32px;
+  height: 32px;
+  background: var(--white);
+  border: 3px solid var(--electric);
+  border-radius: 50%;
+  box-shadow: var(--shadow-lg);
+  cursor: grab;
+  transition: all var(--transition);
+  z-index: 10;
+}
+
+.slider-thumb:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: var(--shadow-xl);
+}
+
+.slider-thumb:active {
+  cursor: grabbing;
+  transform: translate(-50%, -50%) scale(0.95);
+}
+
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--space-sm);
+  font-size: 0.875rem;
+  color: var(--stone-600);
+}
+
+.slider-value-display {
+  text-align: center;
+  margin-top: var(--space-md);
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--electric);
+  background: var(--electric-light);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-lg);
+  display: inline-block;
+  min-width: 120px;
+}
+
+/* ========== LIVE RESULT INDICATOR ========== */
+.live-result-indicator {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--midnight);
+  color: var(--white);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-2xl);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  animation: slideInUp 0.5s ease-out;
+  border-left: 4px solid var(--emerald);
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.live-result-indicator i {
+  color: var(--emerald);
+  font-size: 1.5rem;
+}
+
+.live-result-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.live-result-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--stone-300);
+}
+
+.live-result-value {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--white);
+}
+
+/* ========== PROGRESS VISUALIZATION ========== */
+.calculator-progress {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+  padding: var(--space-md);
+  background: var(--stone-50);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--stone-200);
+}
+
+.progress-steps {
+  display: flex;
+  gap: 0.5rem;
+  flex-grow: 1;
+}
+
+.progress-step {
+  flex: 1;
+  height: 8px;
+  background: var(--stone-300);
+  border-radius: var(--radius-full);
+  transition: all var(--transition);
+}
+
+.progress-step.active {
+  background: linear-gradient(90deg, var(--electric), var(--amethyst));
+  box-shadow: 0 0 0 2px var(--electric-light);
+}
+
+.progress-step.completed {
+  background: var(--emerald);
+}
+
+.progress-text {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--stone-700);
+  min-width: 120px;
+  text-align: right;
+}
+
+/* ========== CALCULATE BUTTON GAMIFIED ========== */
+.calculate-btn-gamified {
+  width: 100%;
+  background: linear-gradient(135deg, var(--electric) 0%, var(--electric-dark) 100%);
+  color: var(--white);
+  border: none;
+  padding: 1.25rem;
+  border-radius: var(--radius-lg);
+  font-size: 1.25rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-xl);
+  position: relative;
+  overflow: hidden;
+}
+
+.calculate-btn-gamified::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.calculate-btn-gamified:hover::before {
+  left: 100%;
+}
+
+.calculate-btn-gamified:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-2xl);
+}
+
+.calculate-btn-gamified:active {
+  transform: translateY(-1px);
+}
+
+/* ========== EXPERT TAG ========== */
+.expert-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, var(--emerald) 0%, var(--emerald-dark) 100%);
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: var(--space-sm);
+}
+
+.expert-tag i {
+  font-size: 0.875rem;
+}
+
+/* ========== TECH BADGE ========== */
+.tech-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: rgba(0, 0, 0, 0.8);
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .live-result-indicator {
+    bottom: 1rem;
+    right: 1rem;
+    left: 1rem;
+  }
+  
+  .slider-value-display {
+    font-size: 1.5rem;
+    min-width: 100px;
+  }
+  
+  .calculator-progress {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+  
+  .progress-text {
+    text-align: center;
+    min-width: auto;
+  }
+}
