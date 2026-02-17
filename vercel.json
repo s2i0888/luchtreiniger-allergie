@@ -1,22 +1,16 @@
 {
-  "buildCommand": "hugo version && hugo --gc --minify",
+  "buildCommand": "",
   "outputDirectory": "public",
-  "framework": "hugo",
-  "installCommand": "curl -L https://github.com/gohugoio/hugo/releases/download/v0.128.0/hugo_extended_0.128.0_linux-amd64.tar.gz | tar xz -C /tmp && mv /tmp/hugo /usr/local/bin/",
-  "devCommand": "hugo server -D",
+  "framework": "static",
+  "devCommand": "",
   "regions": ["ams1"],
   "github": {
     "silent": true
   },
-  "env": {
-    "HUGO_VERSION": "0.128.0",
-    "HUGO_ENV": "production"
-  },
-  "redirects": [
+  "rewrites": [
     {
-      "source": "/test-methodologie",
-      "destination": "/test-methodologie/",
-      "permanent": true
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ],
   "headers": [
@@ -46,7 +40,16 @@
       ]
     },
     {
-      "source": "/assets/(.*)",
+      "source": "/css/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/js/(.*)",
       "headers": [
         {
           "key": "Cache-Control",

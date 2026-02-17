@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luchtreiniger Allergie - Binnenkort Live</title>
+    
+    <!-- SEO Protection: Noindex during maintenance -->
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
+    
+    <style>
+        :root {
+            --midnight: #0f172a;
+            --electric: #3b82f6;
+            --stone-50: #fafaf9;
+            --stone-100: #f5f5f4;
+            --stone-200: #e7e5e4;
+            --stone-600: #57534e;
+            --emerald: #10b981;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--stone-50) 0%, var(--stone-100) 100%);
+            color: var(--midnight);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 3rem;
+            color: var(--midnight);
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--electric) 0%, var(--midnight) 100%);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .logo-text {
+            font-size: 1.75rem;
+            font-weight: 900;
+            letter-spacing: -0.025em;
+        }
+        
+        .logo-text .highlight {
+            color: var(--electric);
+        }
+        
+        .main-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 3rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--stone-200);
+            margin-bottom: 2rem;
+        }
+        
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--emerald) 0%, #059669 100%);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.025em;
+            margin-bottom: 1.5rem;
+            color: var(--midnight);
+        }
+        
+        .lead {
+            font-size: 1.25rem;
+            color: var(--stone-600);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+        
+        .cr-badges {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 2rem 0;
+        }
+        
+        .cr-badge {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+        
+        .cr-excellent { background: #10b981; color: white; }
+        .cr-very-good { background: #22c55e; color: white; }
+        .cr-good { background: #eab308; color: white; }
+        .cr-fair { background: #f97316; color: white; }
+        .cr-poor { background: #ef4444; color: white; }
+        
+        .email-form {
+            background: var(--stone-50);
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid var(--stone-200);
+            margin-top: 2rem;
+        }
+        
+        .form-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--midnight);
+        }
+        
+        .form-subtitle {
+            font-size: 0.875rem;
+            color: var(--stone-600);
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group {
+            display: flex;
+            gap: 0.5rem;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 640px) {
+            .form-group {
+                flex-direction: column;
+            }
+        }
+        
+        .email-input {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid var(--stone-300);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: all 0.15s;
+        }
+        
+        .email-input:focus {
+            outline: none;
+            border-color: var(--electric);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, var(--electric) 0%, var(--midnight) 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s;
+            white-space: nowrap;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .privacy-note {
+            font-size: 0.75rem;
+            color: var(--stone-500);
+            margin-top: 1rem;
+            line-height: 1.4;
+        }
+        
+        .footer {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--stone-200);
+            color: var(--stone-600);
+            font-size: 0.875rem;
+        }
+        
+        @media (max-width: 640px) {
+            .main-card {
+                padding: 2rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .lead {
+                font-size: 1.125rem;
+            }
+        }
+    </style>
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Logo -->
+        <div class="logo">
+            <div class="logo-icon">
+                <i class="fas fa-wind"></i>
+            </div>
+            <div class="logo-text">
+                Luchtreiniger<span class="highlight">Allergie</span>
+            </div>
+        </div>
+
+        <!-- Main Card -->
+        <div class="main-card">
+            <div class="status-badge">
+                <i class="fas fa-tools"></i>
+                <span>UNDER CONSTRUCTION</span>
+            </div>
+
+            <h1>Wij leggen momenteel de laatste hand aan onze onafhankelijke testresultaten.</h1>
+            
+            <p class="lead">
+                Binnenkort live: de meest betrouwbare keuzehulp voor een allergievrij huis, 
+                gebaseerd op Consumer Reports methodologie en EAN-verificatie.
+            </p>
+
+            <!-- Consumer Reports Badges -->
+            <div class="cr-badges">
+                <div class="cr-badge cr-excellent" title="Uitstekend">🟢+</div>
+                <div class="cr-badge cr-very-good" title="Zeer Goed">🟢</div>
+                <div class="cr-badge cr-good" title="Goed">🟡</div>
+                <div class="cr-badge cr-fair" title="Matig">🟠</div>
+                <div class="cr-badge cr-poor" title="Slecht">🔴</div>
+            </div>
+
+            <!-- Email Form -->
+            <div class="email-form">
+                <h3 class="form-title">Blijf op de hoogte</h3>
+                <p class="form-subtitle">Ontvang een notificatie wanneer we live gaan + exclusieve early access</p>
+                
+                <form id="notify-form" class="form-group">
+                    <input type="email" class="email-input" placeholder="jouw@email.nl" required>
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-bell"></i>
+                        <span>Notificeer mij</span>
+                    </button>
+                </form>
+                
+                <p class="privacy-note">
+                    <i class="fas fa-lock"></i>
+                    We sturen alleen een notificatie wanneer de site live gaat. Geen spam, ever.
+                </p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2026 Luchtreiniger Allergie. Alle rechten voorbehouden.</p>
+            <p>Consumer Reports methodologie • Choice.com.au standaarden • Nederlandse markt focus</p>
+        </div>
+    </div>
+
+    <!-- Simple Form Handler -->
+    <script>
+        document.getElementById('notify-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('.email-input').value.trim();
+            const btn = this.querySelector('.submit-btn');
+            const originalText = btn.innerHTML;
+            
+            // Simple validation
+            if (!email.includes('@') || !email.includes('.')) {
+                alert('Voer een geldig e-mailadres in (bijv. naam@domein.nl)');
+                return;
+            }
+            
+            // Show loading state
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>Opslaan...</span>';
+            btn.disabled = true;
+            
+            // Create CSV data
+            const timestamp = new Date().toISOString();
+            const csvData = `timestamp,email,source\n"${timestamp}","${email}","luchtreiniger-allergie-coming-soon"`;
+            
+            // Create blob and download
+            const blob = new Blob([csvData], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `leads_${new Date().toISOString().split('T')[0]}.csv`;
+            
+            // Trigger download
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            // Success message
+            btn.innerHTML = '<i class="fas fa-check"></i><span>Opgeslagen!</span>';
+            
+            // Clear form
+            this.querySelector('.email-input').value = '';
+            
+            // Reset button after 3 seconds
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

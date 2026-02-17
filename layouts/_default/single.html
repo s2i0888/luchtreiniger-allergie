@@ -1,0 +1,17 @@
+{{ define "main" }}
+{{ if eq .Type "page" }}
+    {{ if eq .Layout "under-construction" }}
+        {{ partial "under-construction.html" . }}
+    {{ else }}
+        <article>
+            <h1>{{ .Title }}</h1>
+            {{ .Content }}
+        </article>
+    {{ end }}
+{{ else }}
+    <article>
+        <h1>{{ .Title }}</h1>
+        {{ .Content }}
+    </article>
+{{ end }}
+{{ end }}
