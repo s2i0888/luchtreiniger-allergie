@@ -1,0 +1,69 @@
+name: Manual Deployment Trigger
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Deployment environment'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+        - production
+        - staging
+      region:
+        description: 'Deployment region'
+        required: true
+        default: 'ams1'
+        type: choice
+        options:
+        - ams1
+        - fra1
+        - iad1
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment }}
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Setup Hugo Extended
+      uses: peaceiris/actions-hugo@v3
+      with:
+        hugo-version: '0.128.0'
+        extended: true
+        
+    - name: Build Hugo site
+      run: |
+        hugo --minify --cleanDestinationDir
+        echo "✅ Build complete"
+        echo "📁 Files generated: $(find ./public -type f | wc -l)"
+        
+    - name: Deploy to Vercel (via CLI)
+      if: github.event.inputs.environment == 'production'
+      run: |
+        npm install --global vercel
+        vercel --token ${{ secrets.VERCEL_TOKEN }} --prod
+        
+    - name: Create deployment summary
+      run: |
+        echo "## 🚀 Deployment Summary" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**Environment:** ${{ github.event.inputs.environment }}" >> $GITHUB_STEP_SUMMARY
+        echo "**Region:** ${{ github.event.inputs.region }}" >> $GITHUB_STEP_SUMMARY
+        echo "**Timestamp:** $(date -u)" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### 📊 Build Statistics" >> $GITHUB_STEP_SUMMARY
+        echo "- Hugo Version: 0.128.0 (Extended)" >> $GITHUB_STEP_SUMMARY
+        echo "- Build Time: $(date -u)" >> $GITHUB_STEP_SUMMARY
+        echo "- Output Directory: ./public" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### 🌐 URLs" >> $GITHUB_STEP_SUMMARY
+        echo "- Production: https://luchtreiniger-allergie.nl" >> $GITHUB_STEP_SUMMARY
+        echo "- Test Methodologie: https://luchtreiniger-allergie.nl/test-methodologie/" >> $GITHUB_STEP_SUMMARY
+        echo "- Sitemap: https://luchtreiniger-allergie.nl/sitemap.xml" >> $GITHUB_STEP_SUMMARY
