@@ -1,22 +1,23 @@
 {
-  "buildCommand": "hugo --gc --minify",
+  "buildCommand": "hugo --gc --minify --cleanDestinationDir",
   "outputDirectory": "public",
   "framework": "hugo",
-  "installCommand": "npm install -g hugo-extended",
+  "installCommand": "npm install",
+  "devCommand": "hugo server -D",
+  "regions": ["ams1"],
   "github": {
     "silent": true
   },
   "env": {
-    "HUGO_VERSION": "0.128.0"
+    "HUGO_VERSION": "0.128.0",
+    "HUGO_ENV": "production",
+    "HUGO_ENABLEGITINFO": "true"
   },
   "redirects": [
     {
-      "source": "/producten",
-      "destination": "/"
-    },
-    {
-      "source": "/gidsen",
-      "destination": "/"
+      "source": "/test-methodologie",
+      "destination": "/test-methodologie/",
+      "permanent": true
     }
   ],
   "headers": [
@@ -34,6 +35,23 @@
         {
           "key": "X-XSS-Protection",
           "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
         }
       ]
     }

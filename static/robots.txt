@@ -1,0 +1,71 @@
+# luchtreiniger-allergie.nl - Robots.txt
+# Verified Authority Framework - Consumer Reports + Choice.com.au methodologie
+
+User-agent: *
+Allow: /
+Disallow: /private/
+Disallow: /admin/
+
+# Sitemap
+Sitemap: https://luchtreiniger-allergie.nl/sitemap.xml
+
+# Crawl delay (respectful)
+Crawl-delay: 2
+
+# Preferred host
+Host: https://luchtreiniger-allergie.nl
+
+# Googlebot specific
+User-agent: Googlebot
+Allow: /
+Disallow: /search/
+Crawl-delay: 1
+
+# Bingbot
+User-agent: bingbot
+Allow: /
+Disallow: /search/
+Crawl-delay: 2
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+Disallow: /search/
+
+# Common social media bots
+User-agent: Twitterbot
+Allow: /
+
+User-agent: FacebookExternalHit
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+# Bad bots (block)
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# AI/LLM crawlers (respectful blocking)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+# Last updated
+# Generated: 2026-02-17
+# Site: luchtreiniger-allergie.nl
+# Contact: via website contact form

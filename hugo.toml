@@ -1,17 +1,67 @@
-baseURL = "https://luchtreiniger-allergie.nl/"
-languageCode = "nl-nl"
-title = "Luchtreiniger Allergie - Expert Gids & Keuzehulp"
+baseURL = 'https://luchtreiniger-allergie.nl/'
+languageCode = 'nl-nl'
+title = 'Luchtreiniger Allergie - Onafhankelijke Tests & Advies'
+theme = ''
 
+# Hugo build settings
+buildFuture = false
+buildDrafts = false
+buildExpired = false
+
+# Performance optimizations
+enableRobotsTXT = true
+enableGitInfo = true
+enableEmoji = true
+
+# Security headers
+[security]
+  enableInlineShortcodes = false
+
+# Markup settings
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+      xHTML = false
+
+# Sitemap configuration
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+  filename = "sitemap.xml"
+
+# Menu configuration
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "Home"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    identifier = "test-methodologie"
+    name = "Test Methodologie"
+    url = "/test-methodologie/"
+    weight = 2
+  [[menu.main]]
+    identifier = "vergelijking"
+    name = "Vergelijking"
+    url = "/test-comparison/"
+    weight = 3
+
+# Site parameters
 [params]
-  description = "De complete gids voor luchtreinigers bij hooikoorts, astma en allergieën. Onafhankelijke tests, CADR vergelijkingen en beste keuzes."
   author = "Luchtreiniger Allergie Team"
-  email = "info@luchtreiniger-allergie.nl"
+  description = "Onafhankelijke tests van luchtreinigers voor hooikoorts en allergieën. Consumer Reports methodologie, EAN-verificatie, Nederlandse markt."
   
-  # Social media
+  # SEO
+  seo_keywords = ["luchtreiniger", "allergie", "hooikoorts", "test", "review", "CADR", "HEPA filter", "Nederland"]
+  seo_author = "Luchtreiniger Allergie Team"
+  
+  # Social
   twitter = "@luchtreiniger_nl"
   
-  # Affiliate disclaimer
-  affiliate_disclaimer = "Deze site bevat affiliate links. Wij krijgen mogelijk commissie bij aankoop via onze links, zonder extra kosten voor jou."
+  # Contact
+  contact_email = "info@luchtreiniger-allergie.nl"
   
-  # Trust signals
-  trust_badges = ["✅ Onafhankelijke tests", "📊 CADR gemeten", "💰 Geen sponsoring", "🔒 Veilig winkelen"]
+  # Affiliate disclaimer
+  affiliate_disclaimer = "Wij testen onafhankelijk. Als u via onze links koopt, ontvangen wij mogelijk een commissie zonder extra kosten voor u."
