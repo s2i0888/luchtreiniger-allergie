@@ -32,9 +32,9 @@
     </script>
     
     <!-- CSS - Tech Authority Design -->
-    <link rel="stylesheet" href="/css/premium.css">
-    <link rel="stylesheet" href="/css/products.css">
-    <link rel="stylesheet" href="/css/calculator-gamified.css">
+    <link rel="stylesheet" href="{{ "css/premium.css" | absURL }}">
+    <link rel="stylesheet" href="{{ "css/products.css" | absURL }}">
+    <link rel="stylesheet" href="{{ "css/calculator-gamified.css" | absURL }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Favicon -->
@@ -139,8 +139,8 @@
     </footer>
 
     <!-- JavaScript -->
-    <script src="/js/main.js"></script>
-    <script src="/js/calculator.js"></script>
+    <script src="{{ "js/main.js" | absURL }}"></script>
+    <script src="{{ "js/calculator.js" | absURL }}"></script>
     
     {{ block "scripts" . }}{{ end }}
 </body>

@@ -1,5 +1,5 @@
 {
-  "buildCommand": "hugo --gc --minify --cleanDestinationDir",
+  "buildCommand": "hugo --gc --minify --cleanDestinationDir --forceSyncStatic",
   "outputDirectory": "public",
   "framework": "hugo",
   "installCommand": "npm install",
