@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{ .Title }}">
+    <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ .Permalink }}">
+    
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "{{ .Site.Title }}",
+        "description": "{{ .Site.Params.description }}",
+        "url": "{{ .Site.BaseURL }}",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Luchtreiniger Allergie",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "{{ .Site.BaseURL }}images/logo.png"
+            }
+        }
+    }
+    </script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ "images/favicon.ico" | relURL }}">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    {{ block "head" . }}{{ end }}
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="{{ "/" | relURL }}" class="logo">
+                    <i class="fas fa-wind"></i>
+                    <span>Luchtreiniger<span class="highlight">Allergie</span></span>
+                </a>
+                
+                <button class="menu-toggle" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <ul class="nav-menu">
+                    <li><a href="{{ "/" | relURL }}">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#">Producten <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ "producten/" | relURL }}">Alle Luchtreinigers</a></li>
+                            <li><a href="{{ "beste-voor/slaapkamer" | relURL }}">Beste voor Slaapkamer</a></li>
+                            <li><a href="{{ "beste-voor/babykamer" | relURL }}">Beste voor Babykamer</a></li>
+                            <li><a href="{{ "beste-voor/astma" | relURL }}">Beste voor Astma</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{{ "gidsen/" | relURL }}">Gidsen</a></li>
+                    <li><a href="{{ "calculator/" | relURL }}">Calculator</a></li>
+                    <li><a href="{{ "over-ons/" | relURL }}">Over Ons</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        {{ block "main" . }}{{ end }}
+    </main>
+
+    <!-- Trust Badges -->
+    <section class="trust-badges">
+        <div class="container">
+            <div class="badges-grid">
+                {{ range .Site.Params.trust_badges }}
+                <div class="badge">
+                    <i class="fas fa-check-circle"></i>
+                    <span>{{ . }}</span>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Luchtreiniger Allergie</h3>
+                    <p>Onafhankelijke gids voor de beste luchtreinigers bij allergieën, hooikoorts en astma.</p>
+                    <p class="affiliate-disclaimer">
+                        <i class="fas fa-info-circle"></i>
+                        {{ .Site.Params.affiliate_disclaimer }}
+                    </p>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Snelle Links</h3>
+                    <ul>
+                        <li><a href="{{ "/" | relURL }}">Home</a></li>
+                        <li><a href="{{ "producten/" | relURL }}">Product Reviews</a></li>
+                        <li><a href="{{ "gidsen/" | relURL }}">Gidsen</a></li>
+                        <li><a href="{{ "calculator/" | relURL }}">Calculator</a></li>
+                        <li><a href="{{ "privacy/" | relURL }}">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-envelope"></i> {{ .Site.Params.email }}</p>
+                    <p><i class="fab fa-twitter"></i> {{ .Site.Params.twitter }}</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; {{ now.Format "2006" }} Luchtreiniger Allergie. Alle rechten voorbehouden.</p>
+                <p>Deze site is geen medisch advies. Raadpleeg een arts voor gezondheidsvragen.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="{{ "js/main.js" | relURL }}"></script>
+    <script src="{{ "js/calculator.js" | relURL }}"></script>
+    
+    {{ block "scripts" . }}{{ end }}
+</body>
+</html>

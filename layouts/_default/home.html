@@ -1,0 +1,192 @@
+{{ define "main" }}
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Last van hooikoorts of allergieën?</h1>
+            <p>Ontdek de beste luchtreinigers voor een gezonde luchtkwaliteit. Onafhankelijke tests, CADR vergelijkingen en expert advies.</p>
+            <a href="#calculator" class="cta-button">
+                <i class="fas fa-calculator"></i> Vind jouw perfecte luchtreiniger
+            </a>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section id="calculator" class="calculator-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Persoonlijke Keuzehulp</h2>
+                <p>Beantwoord 4 vragen voor een persoonlijke aanbeveling</p>
+            </div>
+            
+            <div class="calculator-container">
+                <div class="calculator-grid">
+                    <div class="calculator-inputs">
+                        <h3>Jouw situatie</h3>
+                        
+                        <div class="input-group">
+                            <label for="room-size">Kamer grootte (m²)</label>
+                            <input type="range" id="room-size" min="10" max="50" value="20">
+                            <div class="range-value"><span id="room-size-value">20</span> m²</div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="allergy-level">Allergie ernst</label>
+                            <select id="allergy-level">
+                                <option value="mild">Mild (af en toe last)</option>
+                                <option value="moderate" selected>Matig (regelmatig last)</option>
+                                <option value="severe">Ernstig (dagelijks last)</option>
+                                <option value="very-severe">Zeer ernstig (astma/combinatie)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="room-type">Kamer type</label>
+                            <select id="room-type">
+                                <option value="bedroom">Slaapkamer</option>
+                                <option value="living-room" selected>Woonkamer</option>
+                                <option value="office">Kantoor</option>
+                                <option value="baby-room">Babykamer</option>
+                            </select>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="budget">Budget</label>
+                            <select id="budget">
+                                <option value="budget">Budget (€100-€200)</option>
+                                <option value="midrange" selected>Mid-range (€200-€400)</option>
+                                <option value="premium">Premium (€400-€800)</option>
+                                <option value="luxury">Luxe (€800+)</option>
+                            </select>
+                        </div>
+                        
+                        <button class="calculate-btn" id="calculate-btn">
+                            <i class="fas fa-calculator"></i> Bereken aanbeveling
+                        </button>
+                    </div>
+                    
+                    <div class="calculator-results">
+                        <h3>Jouw aanbeveling</h3>
+                        <div id="results-placeholder">
+                            <p class="placeholder-text">Vul de vragen in voor een persoonlijke aanbeveling</p>
+                        </div>
+                        <div id="results-output" style="display: none;">
+                            <!-- Results will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="products-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Editor's Choice - Top Luchtreinigers</h2>
+                <p>Onze onafhankelijke selectie van de beste modellen</p>
+            </div>
+            
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-wind fa-3x"></i>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Blueair HealthProtect 7770i</h3>
+                        <div class="product-price">€649</div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-check"></i> CADR: 495 m³/h</li>
+                            <li><i class="fas fa-check"></i> HEPA H13 filter</li>
+                            <li><i class="fas fa-check"></i> Nachtmodus: 29 dB</li>
+                            <li><i class="fas fa-check"></i> Geschikt voor 65 m²</li>
+                        </ul>
+                        <a href="#" class="buy-button">
+                            <i class="fas fa-shopping-cart"></i> Bekijk bij Bol.com
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-wind fa-3x"></i>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Coway Airmega AP-1512HH</h3>
+                        <div class="product-price">€399</div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-check"></i> CADR: 350 m³/h</li>
+                            <li><i class="fas fa-check"></i> 4-fase filtering</li>
+                            <li><i class="fas fa-check"></i> Energiezuinig</li>
+                            <li><i class="fas fa-check"></i> Geschikt voor 45 m²</li>
+                        </ul>
+                        <a href="#" class="buy-button">
+                            <i class="fas fa-shopping-cart"></i> Bekijk bij Coolblue
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-wind fa-3x"></i>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Philips Series 3000i</h3>
+                        <div class="product-price">€299</div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-check"></i> CADR: 270 m³/h</li>
+                            <li><i class="fas fa-check"></i> AeraSense technologie</li>
+                            <li><i class="fas fa-check"></i> App bediening</li>
+                            <li><i class="fas fa-check"></i> Geschikt voor 35 m²</li>
+                        </ul>
+                        <a href="#" class="buy-button">
+                            <i class="fas fa-shopping-cart"></i> Bekijk bij Amazon
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Piramide Strategie -->
+    <section class="pyramid-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Onze Piramide Strategie</h2>
+                <p>Drie lagen van expertise voor de beste keuze</p>
+            </div>
+            
+            <div class="pyramid-grid">
+                <div class="pyramid-layer">
+                    <div class="layer-icon">
+                        <i class="fas fa-hands-helping fa-2x"></i>
+                    </div>
+                    <h3>Basis: Probleem-Oplosser</h3>
+                    <p>100% help content zonder verkoop. Gidsen over hooikoorts, astma, en luchtkwaliteit.</p>
+                </div>
+                
+                <div class="pyramid-layer">
+                    <div class="layer-icon">
+                        <i class="fas fa-microscope fa-2x"></i>
+                    </div>
+                    <h3>Midden: Technische Expert</h3>
+                    <p>25+ datapunten per product. CADR metingen, dB tests, filter kosten analyse.</p>
+                </div>
+                
+                <div class="pyramid-layer">
+                    <div class="layer-icon">
+                        <i class="fas fa-bullseye fa-2x"></i>
+                    </div>
+                    <h3>Punt: Hyper-Niche Advies</h3>
+                    <p>Specifieke landing pages. "Beste voor slaapkamer", "Beste voor babykamer".</p>
+                </div>
+            </div>
+        </div>
+    </section>
+{{ end }}
+
+{{ define "scripts" }}
+<script src="{{ "js/calculator.js" | relURL }}"></script>
+{{ end }}

@@ -1,0 +1,17 @@
+baseURL = "https://luchtreiniger-allergie.nl/"
+languageCode = "nl-nl"
+title = "Luchtreiniger Allergie - Expert Gids & Keuzehulp"
+
+[params]
+  description = "De complete gids voor luchtreinigers bij hooikoorts, astma en allergieën. Onafhankelijke tests, CADR vergelijkingen en beste keuzes."
+  author = "Luchtreiniger Allergie Team"
+  email = "info@luchtreiniger-allergie.nl"
+  
+  # Social media
+  twitter = "@luchtreiniger_nl"
+  
+  # Affiliate disclaimer
+  affiliate_disclaimer = "Deze site bevat affiliate links. Wij krijgen mogelijk commissie bij aankoop via onze links, zonder extra kosten voor jou."
+  
+  # Trust signals
+  trust_badges = ["✅ Onafhankelijke tests", "📊 CADR gemeten", "💰 Geen sponsoring", "🔒 Veilig winkelen"]
