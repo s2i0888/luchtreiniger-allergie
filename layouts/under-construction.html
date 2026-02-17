@@ -1,0 +1,509 @@
+{{ define "main" }}
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luchtreiniger Allergie - Binnenkort Live</title>
+    
+    <!-- Choice/Consumer Reports Authority Styling -->
+    <style>
+        :root {
+            --midnight: #0f172a;
+            --midnight-light: #1e293b;
+            --electric: #3b82f6;
+            --electric-light: #dbeafe;
+            --stone-50: #fafaf9;
+            --stone-100: #f5f5f4;
+            --stone-200: #e7e5e4;
+            --stone-300: #d6d3d1;
+            --stone-400: #a8a29e;
+            --stone-500: #78716c;
+            --stone-600: #57534e;
+            --stone-700: #44403c;
+            --stone-800: #292524;
+            --stone-900: #1c1917;
+            --emerald: #10b981;
+            --emerald-dark: #059669;
+            --radius: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --space-xs: 0.5rem;
+            --space-sm: 0.75rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 4rem;
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, var(--stone-50) 0%, var(--stone-100) 100%);
+            color: var(--midnight);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-xl);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Logo & Header */
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-2xl);
+            color: var(--midnight);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--electric) 0%, var(--midnight-light) 100%);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .logo-text {
+            font-size: 1.75rem;
+            font-weight: 900;
+            letter-spacing: -0.025em;
+        }
+
+        .logo-text .highlight {
+            color: var(--electric);
+        }
+
+        /* Main Content */
+        .main-card {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: var(--space-3xl);
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--stone-200);
+            margin-bottom: var(--space-xl);
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            background: linear-gradient(135deg, var(--emerald) 0%, var(--emerald-dark) 100%);
+            color: white;
+            padding: var(--space-xs) var(--space-lg);
+            border-radius: var(--radius-full);
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: var(--space-xl);
+            box-shadow: var(--shadow);
+        }
+
+        .status-badge i {
+            font-size: 0.875rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.025em;
+            margin-bottom: var(--space-lg);
+            color: var(--midnight);
+        }
+
+        .lead {
+            font-size: 1.25rem;
+            color: var(--stone-600);
+            margin-bottom: var(--space-2xl);
+            line-height: 1.7;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-lg);
+            margin: var(--space-2xl) 0;
+        }
+
+        .feature-card {
+            background: var(--stone-50);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            border: 1px solid var(--stone-200);
+            text-align: center;
+            transition: all var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--electric);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--electric-light) 0%, white 100%);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-md);
+            color: var(--electric);
+            font-size: 1.5rem;
+            border: 1px solid var(--stone-200);
+        }
+
+        .feature-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: var(--space-xs);
+            color: var(--midnight);
+        }
+
+        .feature-desc {
+            font-size: 0.875rem;
+            color: var(--stone-600);
+            line-height: 1.5;
+        }
+
+        /* Email Form */
+        .email-form {
+            background: var(--stone-50);
+            border-radius: var(--radius-xl);
+            padding: var(--space-2xl);
+            border: 1px solid var(--stone-200);
+            margin-top: var(--space-2xl);
+        }
+
+        .form-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            color: var(--midnight);
+        }
+
+        .form-subtitle {
+            font-size: 0.875rem;
+            color: var(--stone-600);
+            margin-bottom: var(--space-lg);
+        }
+
+        .form-group {
+            display: flex;
+            gap: var(--space-sm);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 640px) {
+            .form-group {
+                flex-direction: column;
+            }
+        }
+
+        .email-input {
+            flex: 1;
+            padding: var(--space-md);
+            border: 2px solid var(--stone-300);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            transition: all var(--transition);
+        }
+
+        .email-input:focus {
+            outline: none;
+            border-color: var(--electric);
+            box-shadow: 0 0 0 3px var(--electric-light);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--electric) 0%, var(--midnight-light) 100%);
+            color: white;
+            border: none;
+            padding: var(--space-md) var(--space-xl);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition);
+            white-space: nowrap;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .privacy-note {
+            font-size: 0.75rem;
+            color: var(--stone-500);
+            margin-top: var(--space-md);
+            line-height: 1.4;
+        }
+
+        /* Progress Bar */
+        .progress-section {
+            margin: var(--space-2xl) 0;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--space-xs);
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--stone-700);
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: var(--stone-200);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--electric), var(--emerald));
+            border-radius: var(--radius-full);
+            width: 85%;
+            animation: progress 2s ease-out;
+        }
+
+        @keyframes progress {
+            from { width: 0%; }
+            to { width: 85%; }
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-xl);
+            border-top: 1px solid var(--stone-200);
+            color: var(--stone-600);
+            font-size: 0.875rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-xl);
+            margin-top: var(--space-md);
+        }
+
+        .footer-link {
+            color: var(--stone-600);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+
+        .footer-link:hover {
+            color: var(--electric);
+        }
+
+        /* Consumer Reports Style Elements */
+        .cr-badges {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-sm);
+            margin: var(--space-xl) 0;
+        }
+
+        .cr-badge {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .cr-excellent { background: #10b981; color: white; }
+        .cr-very-good { background: #22c55e; color: white; }
+        .cr-good { background: #eab308; color: white; }
+        .cr-fair { background: #f97316; color: white; }
+        .cr-poor { background: #ef4444; color: white; }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .main-card {
+                padding: var(--space-xl);
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .lead {
+                font-size: 1.125rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Logo -->
+        <div class="logo">
+            <div class="logo-icon">
+                <i class="fas fa-wind"></i>
+            </div>
+            <div class="logo-text">
+                Luchtreiniger<span class="highlight">Allergie</span>
+            </div>
+        </div>
+
+        <!-- Main Card -->
+        <div class="main-card">
+            <div class="status-badge">
+                <i class="fas fa-tools"></i>
+                <span>UNDER CONSTRUCTION</span>
+            </div>
+
+            <h1>Wij leggen momenteel de laatste hand aan onze onafhankelijke testresultaten.</h1>
+            
+            <p class="lead">
+                Binnenkort live: de meest betrouwbare keuzehulp voor een allergievrij huis, 
+                gebaseerd op Consumer Reports methodologie en EAN-verificatie.
+            </p>
+
+            <!-- Consumer Reports Badges -->
+            <div class="cr-badges">
+                <div class="cr-badge cr-excellent" title="Uitstekend">🟢+</div>
+                <div class="cr-badge cr-very-good" title="Zeer Goed">🟢</div>
+                <div class="cr-badge cr-good" title="Goed">🟡</div>
+                <div class="cr-badge cr-fair" title="Matig">🟠</div>
+                <div class="cr-badge cr-poor" title="Slecht">🔴</div>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3 class="feature-title">Wetenschappelijke Tests</h3>
+                    <p class="feature-desc">ISO 16890 testmethodologie in onze 30m³ labruimte</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-barcode"></i>
+                    </div>
+                    <h3 class="feature-title">EAN-Verificatie</h3>
+                    <p class="feature-desc">Alle producten geverifieerd met Nederlandse EAN codes</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Real-time Prijzen</h3>
+                    <p class="feature-desc">Dagelijkse monitoring van Bol.com & Coolblue prijzen</p>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-section">
+                <div class="progress-label">
+                    <span>Development Progress</span>
+                    <span>85%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+            </div>
+
+            <!-- Email Form -->
+            <div class="email-form">
+                <h3 class="form-title">Blijf op de hoogte</h3>
+                <p class="form-subtitle">Ontvang een notificatie wanneer we live gaan + exclusieve early access</p>
+                
+                <form id="notify-form" class="form-group">
+                    <input type="email" class="email-input" placeholder="jouw@email.nl" required>
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-bell"></i>
+                        <span>Notificeer mij</span>
+                    </button>
+                </form>
+                
+                <p class="privacy-note">
+                    <i class="fas fa-lock"></i>
+                    We sturen alleen een notificatie wanneer de site live gaat. Geen spam, ever.
+                </p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2026 Luchtreiniger Allergie. Alle rechten voorbehouden.</p>
+            <p>Consumer Reports methodologie • Choice.com.au standaarden • Nederlandse markt focus</p>
+            
+            <div class="footer-links">
+                <a href="mailto:info@luchtreiniger-allergie.nl" class="footer-link">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact</span>
+                </a>
+                <a href="https://github.com/s2i0888/luchtreiniger-allergie" class="footer-link" target="_blank">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+                <a href="https://vercel.com" class="footer-link" target="_blank">
+                    <i class="fas fa-cloud"></i>
+                    <span>Vercel</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Simple Form Handler -->
+    <script>
+        document.getElementById('notify-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('.email-input').value;
+            const btn = this.querySelector('.submit-btn');
+            
+            // Simple validation
+            if (!email.includes('@')) {
+                alert('Voer een geldig e-mailadres in');
+                return;

@@ -65,3 +65,6 @@ enableEmoji = true
   
   # Affiliate disclaimer
   affiliate_disclaimer = "Wij testen onafhankelijk. Als u via onze links koopt, ontvangen wij mogelijk een commissie zonder extra kosten voor u."
+  
+  # Maintenance mode
+  maintenance_mode = "true"

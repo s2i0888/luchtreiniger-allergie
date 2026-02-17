@@ -1,0 +1,34 @@
+{{/* 
+    MAINTENANCE MODE REDIRECT
+    All visitors get under-construction page
+    Except when ?preview=secret is used
+*/}}
+
+{{ $showMaintenance := true }}
+{{ if eq .Site.Params.maintenance_mode "false" }}
+    {{ $showMaintenance = false }}
+{{ end }}
+
+{{ if eq (.Param "preview") "s2secret" }}
+    {{ $showMaintenance = false }}
+{{ end }}
+
+{{ if $showMaintenance }}
+    {{/* Redirect to under-construction page */}}
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Redirecting...</title>
+        <meta http-equiv="refresh" content="0;url=/under-construction/">
+        <script>
+            window.location.href = '/under-construction/';
+        </script>
+    </head>
+    <body>
+        <p>Redirecting to maintenance page...</p>
+    </body>
+    </html>
+{{ else }}
+    {{/* Load normal homepage template */}}
+    {{ partial "homepage-preview.html" . }}
+{{ end }}
