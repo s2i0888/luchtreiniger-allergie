@@ -135,10 +135,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Range slider styling
+    // Premium Range slider styling
     const rangeSliders = document.querySelectorAll('input[type="range"]');
     rangeSliders.forEach(slider => {
-        // Create value display
         const valueDisplay = slider.nextElementSibling;
         if (valueDisplay && valueDisplay.classList.contains('range-value')) {
             slider.addEventListener('input', function() {
@@ -147,15 +146,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 const max = this.max || 100;
                 const percent = ((value - min) / (max - min)) * 100;
                 
-                // Update display
-                valueDisplay.querySelector('span').textContent = value;
+                // Update display with animation
+                const span = valueDisplay.querySelector('span');
+                span.textContent = value;
+                span.style.transform = 'scale(1.1)';
+                setTimeout(() => span.style.transform = 'scale(1)', 150);
                 
-                // Style the slider track
-                this.style.background = `linear-gradient(to right, #3b82f6 ${percent}%, #e5e7eb ${percent}%)`;
+                // Premium gradient track
+                this.style.background = `linear-gradient(to right, var(--primary) ${percent}%, var(--gray-300) ${percent}%)`;
             });
             
-            // Initialize
-            slider.dispatchEvent(new Event('input'));
+            // Initialize with animation
+            setTimeout(() => slider.dispatchEvent(new Event('input')), 300);
         }
     });
     
